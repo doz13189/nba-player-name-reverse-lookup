@@ -1,16 +1,16 @@
 <template>
   <div class="home">
-    <Searchbox/>
+    <Search/>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Searchbox from '@/components/Searchbox.vue';
+import Search from '@/components/Search.vue';
 
 export default defineComponent({
   components: {
-    Searchbox,
+    Search,
   },
 });
 </script>

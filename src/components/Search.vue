@@ -28,12 +28,14 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-
+import { Search } from '@/domain/models/Search'
 
 export default defineComponent({
   setup() {
-    const refSearchString = ref<string>('')
+    console.log('search.vue')
 
+    const refSearchString = ref<string>('')
+    new Search(refSearchString.value).execute()
   }
 });
 </script>
