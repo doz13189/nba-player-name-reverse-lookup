@@ -1,5 +1,11 @@
 # nba-player-name-reverse-lookup
 
+## アーキテクチャ
+
+### CSS フレームワーク
+bulma
+
+
 ## Project setup
 ```
 npm install
