@@ -29,18 +29,37 @@ interface MetaIF {
 
 interface SearchResponseIF {
   data: PlayerIF[]
-  meta: MetaIF[]
+  meta: MetaIF
 }
 
 class SearchResponse {
 
   private _playerList: SearchResponseIF
 
-  constructor(response: SearchResponseIF) {
-    this._playerList = response
+  constructor(response: object) {
+
+    if (this.isSearchResponse(response)) {
+      this._playerList = response
+    }
+    
+    throw new Error('Error !!')
+    
   }
 
-  
+  // https://typescript-jp.gitbook.io/deep-dive/type-system/typeguard#yznotype-guard
+  isSearchResponse(checkTarget: any): checkTarget is SearchResponseIF {
+
+    // this._playerList.data の詳細のチェックは省略 (data が undefined でなければ、player のデータはだいたいあるため)
+    return (checkTarget.data !== undefined)
+    && (checkTarget.meta !== undefined)
+    && (checkTarget.meta.current_page !== undefined)
+    && (checkTarget.meta.total_pages !== undefined)
+    && (checkTarget.meta.current_page !== undefined)
+    && (checkTarget.meta.next_page !== undefined)
+    && (checkTarget.meta.per_page !== undefined)
+    && (checkTarget.meta.total_count !== undefined)
+
+  }
 
 }
 

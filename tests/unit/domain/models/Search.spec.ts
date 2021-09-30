@@ -19,6 +19,7 @@ describe('Search.ts', () => {
     expect(searchResponse.totalCount).toEqual(new searchResponse(testResponse).totalCount)
     expect(searchResponse.playerListLength).toEqual(new searchResponse(testResponse).playerListLength)
     expect(searchResponse.playerListData).toEqual(new searchResponse(testResponse).playerListData)
+    
   })
 
 })

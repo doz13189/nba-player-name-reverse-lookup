@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosPromise } from 'axios'
 import { SearchResponse } from '@/domain/models/SearchResponse'
 
 
@@ -10,7 +10,9 @@ class Search {
     this._searchString = searchString
   }
 
-  async execute(): Promise<any> {
+  // execute の return について後でちゃんと読む
+  // https://stackoverflow.com/questions/54812453/function-lacks-ending-return-statement-and-return-type-does-not-include-undefin?rq=1
+  async execute(): Promise<SearchResponse | undefined> {
     try {
 
       const response = await axios.get<SearchResponse>(`https://www.balldontlie.io/api/v1/players?search=${this._searchString}`, {
@@ -19,13 +21,14 @@ class Search {
         },
       })
 
-      console.log(response.data)
+      const searchResponse = new SearchResponse(response.data)
+      if (searchResponse === undefined) { throw new Error('aa') }
 
-      return response.data
+      return searchResponse
 
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log('error')
+        throw new Error('aa')
       }
     }
 
