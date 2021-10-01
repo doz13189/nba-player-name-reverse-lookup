@@ -5,8 +5,8 @@
         <input
           class="input is-rounded"
           type="text"
-          v-model="searchText"
-          @keyup.enter="search()"
+          v-model="refSearchString"
+          @keyup.enter="search.getPlayer()"
           data-testid="search-input"
           >
           <!--
@@ -17,7 +17,7 @@
       <div class="control">
         
         <button class="button is-rounded is-primary"
-          @click="search()"
+          @click="search.getPlayer()"
           data-testid="search-button">
           SEARCH
         </button>
@@ -32,10 +32,15 @@ import { Search } from '@/domain/models/Search'
 
 export default defineComponent({
   setup() {
-    console.log('search.vue')
-
+    
     const refSearchString = ref<string>('')
-    new Search(refSearchString.value).execute()
+    const search = new Search(refSearchString.value)
+
+    return {
+      refSearchString,
+      search
+    }
+    
   }
 });
 </script>

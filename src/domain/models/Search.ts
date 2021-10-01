@@ -1,5 +1,5 @@
-import axios, { AxiosPromise } from 'axios'
-import { SearchResponse } from '@/domain/models/SearchResponse'
+import axios from 'axios'
+import { SearchResponse, SearchResponseService } from '@/domain/models/SearchResponse'
 
 
 class Search {
@@ -10,30 +10,43 @@ class Search {
     this._searchString = searchString
   }
 
-  // execute の return について後でちゃんと読む
-  // https://stackoverflow.com/questions/54812453/function-lacks-ending-return-statement-and-return-type-does-not-include-undefin?rq=1
-  async execute(): Promise<SearchResponse | undefined> {
-    try {
 
-      const response = await axios.get<SearchResponse>(`https://www.balldontlie.io/api/v1/players?search=${this._searchString}`, {
+  async fetch(): Promise<any> {
+    try {
+      const response = await axios.get(`https://www.balldontlie.io/api/v1/players?search=${this._searchString}`, {
         headers: {
           'Content-Type': 'application/json',
         },
       })
 
-      const searchResponse = new SearchResponse(response.data)
-      if (searchResponse === undefined) { throw new Error('aa') }
+      if (!response) {
+        throw new Error('Error Response')
+      }
 
-      return searchResponse
+      return response.data
 
-    } catch (error) {
+    }
+    catch(error) {
       if (axios.isAxiosError(error)) {
-        throw new Error('aa')
+        console.error(error)
       }
     }
-
   }
 
+  // https://stackoverflow.com/questions/54812453/function-lacks-ending-return-statement-and-return-type-does-not-include-undefin?rq=1
+  async getPlayer(): Promise<SearchResponse | undefined> {
+    try {
+
+      const response = await this.fetch()
+
+      if (SearchResponseService.isSearchResponse(response)) {
+        return new SearchResponse(response)
+      }
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
 }
 
 export {

@@ -1,16 +1,16 @@
 interface PlayerIF {
-  id: string
+  id: number
   first_name: string
-  height_feet: string
-  height_inches: string
+  height_feet: number | null
+  height_inches: number | null
   last_name: string
   position: string
   team: TeamIF
-  weight_pounds: string
+  weight_pounds: number | null
 }
 
 interface TeamIF {
-  id : string
+  id : number
   abbreviation : string
   city : string
   conference : string
@@ -22,7 +22,7 @@ interface TeamIF {
 interface MetaIF {
   total_pages : number
   current_page : number
-  next_page : number | string
+  next_page : number | null
   per_page : number
   total_count : number
 }
@@ -32,37 +32,44 @@ interface SearchResponseIF {
   meta: MetaIF
 }
 
-class SearchResponse {
-
-  private _playerList: SearchResponseIF
-
-  constructor(response: object) {
-
-    if (this.isSearchResponse(response)) {
-      this._playerList = response
-    }
-    
-    throw new Error('Error !!')
-    
-  }
+class SearchResponseService {
 
   // https://typescript-jp.gitbook.io/deep-dive/type-system/typeguard#yznotype-guard
-  isSearchResponse(checkTarget: any): checkTarget is SearchResponseIF {
+  static isSearchResponse(checkTarget: any): checkTarget is SearchResponseIF {
+    return (checkTarget.data !== undefined) && (checkTarget.meta !== undefined)
+  }
 
-    // this._playerList.data の詳細のチェックは省略 (data が undefined でなければ、player のデータはだいたいあるため)
-    return (checkTarget.data !== undefined)
-    && (checkTarget.meta !== undefined)
-    && (checkTarget.meta.current_page !== undefined)
-    && (checkTarget.meta.total_pages !== undefined)
-    && (checkTarget.meta.current_page !== undefined)
-    && (checkTarget.meta.next_page !== undefined)
-    && (checkTarget.meta.per_page !== undefined)
-    && (checkTarget.meta.total_count !== undefined)
+}
 
+class SearchResponse {
+
+  private _playerList: PlayerIF[]
+  private _meta: MetaIF
+
+  constructor(response: SearchResponseIF) {
+    this._playerList = response.data
+    this._meta = response.meta
+  }
+
+  playerListLength(): number {
+    return this._playerList.length
+  }
+
+  get meta(): MetaIF {
+    return this._meta
+  }
+
+  get playerList(): PlayerIF[] {
+    return this._playerList
   }
 
 }
 
 export {
-  SearchResponse
+  SearchResponse,
+  SearchResponseService,
+  SearchResponseIF,
+  MetaIF,
+  TeamIF,
+  PlayerIF
 }
