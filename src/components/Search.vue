@@ -22,6 +22,7 @@
           SEARCH
         </button>
       </div>
+      {{ refSearchString }}
     </div>
   </div>
 </template>
@@ -32,8 +33,8 @@ import { Search } from '@/domain/models/Search'
 
 export default defineComponent({
   setup() {
-    
-    const refSearchString = ref<string>('')
+
+    const refSearchString = ref<string>('beal')
     const search = new Search(refSearchString.value)
 
     return {

@@ -40,6 +40,7 @@ class Search {
       const response = await this.fetch()
 
       if (SearchResponseService.isSearchResponse(response)) {
+        console.log(response)
         return new SearchResponse(response)
       }
 

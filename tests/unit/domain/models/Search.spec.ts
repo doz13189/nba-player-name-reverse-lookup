@@ -4,7 +4,11 @@ import {
   SearchResponseIF,
 } from '@/domain/models/SearchResponse'
 
-const expectResponse1: SearchResponseIF = { data : [{
+import axios from 'axios'
+jest.mock('axios')
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+
+const response1: SearchResponseIF = { data : [{
     id : 666577,
     first_name : 'Daniel',
     height_feet : null,
@@ -25,7 +29,7 @@ const expectResponse1: SearchResponseIF = { data : [{
   meta : { 'total_pages' : 1, 'current_page' : 1, 'next_page' : null, 'per_page' : 25, 'total_count' : 1 }
 }
 
-const expectResponse2: SearchResponseIF =  { data:
+const response2: SearchResponseIF =  { data:
   [{
       id: 386,
       first_name: "Chasson",
@@ -72,30 +76,35 @@ const expectResponse2: SearchResponseIF =  { data:
 }
 
 describe('Search.ts', () => {
+  
   it('検索結果が1件の検索テスト', async () => {
+
+    mockedAxios.get.mockResolvedValue({ data: response1 })
 
     const playerName: string = 'gafford'
     const search = new Search(playerName)
-
     const searchResponse = await search.getPlayer()
+
     if (searchResponse) {
-      expect(searchResponse.meta).toEqual(new SearchResponse(expectResponse1).meta)
-      expect(searchResponse.playerList).toEqual(new SearchResponse(expectResponse1).playerList)
-      expect(searchResponse.playerListLength()).toEqual(new SearchResponse(expectResponse1).playerListLength())
+      expect(searchResponse.meta).toEqual(new SearchResponse(response1).meta)
+      expect(searchResponse.playerList).toEqual(new SearchResponse(response1).playerList)
+      expect(searchResponse.playerListLength()).toBe(1)
     }
 
   })
 
   it('検索結果が複数の検索テスト', async () => {
 
+    mockedAxios.get.mockResolvedValue({ data: response2 })
+
     const playerName: string = 'randle'
     const search = new Search(playerName)
 
     const searchResponse = await search.getPlayer()
     if (searchResponse) {
-      expect(searchResponse.meta).toEqual(new SearchResponse(expectResponse2).meta)
-      expect(searchResponse.playerList).toEqual(new SearchResponse(expectResponse2).playerList)
-      expect(searchResponse.playerListLength()).toEqual(new SearchResponse(expectResponse2).playerListLength())
+      expect(searchResponse.meta).toEqual(new SearchResponse(response2).meta)
+      expect(searchResponse.playerList).toEqual(new SearchResponse(response2).playerList)
+      expect(searchResponse.playerListLength()).toBe(2)
     }
 
   })
