@@ -13,6 +13,7 @@ class Search {
 
   async fetch(): Promise<any> {
     try {
+      console.log('Search')
       const response = await axios.get(`https://www.balldontlie.io/api/v1/players?search=${this._searchString}`, {
         headers: {
           'Content-Type': 'application/json',
@@ -40,13 +41,16 @@ class Search {
       const response = await this.fetch()
 
       if (SearchResponseService.isSearchResponse(response)) {
-        console.log(response)
         return new SearchResponse(response)
       }
 
     } catch (error) {
       console.error(error)
     }
+  }
+
+  get searchString() {
+    return this._searchString
   }
 }
 

@@ -6,8 +6,8 @@
           class="input is-rounded"
           type="text"
           v-model="refSearchString"
-          @keyup.enter="search.getPlayer()"
-          data-testid="search-input"
+          @keyup.enter="triggerSearch()"
+          data-testid="search-string"
           >
           <!--
             @focus="focus"
@@ -17,29 +17,40 @@
       <div class="control">
         
         <button class="button is-rounded is-primary"
-          @click="search.getPlayer()"
+          @click="triggerSearch()"
           data-testid="search-button">
           SEARCH
         </button>
       </div>
-      {{ refSearchString }}
     </div>
   </div>
+      <p>
+      {{ refSearchString }}
+      </p>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watchEffect } from 'vue';
 import { Search } from '@/domain/models/Search'
 
 export default defineComponent({
   setup() {
 
-    const refSearchString = ref<string>('beal')
-    const search = new Search(refSearchString.value)
+    const refSearchString = ref<string>('')
+    let search: Search = new Search(refSearchString.value)
+    
+    watchEffect(() => {
+      search = new Search(refSearchString.value)
+      console.log('search.searchString', search.searchString)
+    })
+
+    const triggerSearch = () => {
+      search.getPlayer()
+    }
 
     return {
       refSearchString,
-      search
+      triggerSearch
     }
     
   }
