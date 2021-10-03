@@ -37,11 +37,10 @@ export default defineComponent({
   setup() {
 
     const refSearchString = ref<string>('')
-    let search: Search = new Search(refSearchString.value)
+    let search: Search
     
     watchEffect(() => {
       search = new Search(refSearchString.value)
-      console.log('search.searchString', search.searchString)
     })
 
     const triggerSearch = () => {

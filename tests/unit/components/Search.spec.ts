@@ -12,6 +12,7 @@ describe('Search.vue', () => {
   })
 
   it('画面から検索実行するテスト', async () => {
+    // new Search() は、初期ロードと以下の setValue により2回インスタンス化される
     
     const wrapper = shallowMount(SearchView)
     const searchString = wrapper.find('[data-testid="search-string"]')
@@ -22,10 +23,10 @@ describe('Search.vue', () => {
     wrapper.find('[data-testid="search-button"]').trigger('click')
     await flushPromises()
 
-    // expect(SearchMock.mock.calls.length).toBe(2)
-    console.log(SearchMock.mock.instances[0])
-    // expect(SearchMock.mock.instances[0].searchString).toEqual('')
-    expect(SearchMock.mock.instances[1].searchString).toEqual('test')
+    expect(SearchMock.mock.instances.length).toEqual(2)
+    expect(SearchMock.mock.calls[0][0]).toBe('')
+    expect(SearchMock.mock.calls[1][0]).toBe('test')
+    expect(SearchMock.prototype.getPlayer).toHaveBeenCalledTimes(1)
     
   })
 })
