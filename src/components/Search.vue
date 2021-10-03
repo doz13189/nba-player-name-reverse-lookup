@@ -1,5 +1,5 @@
 <template>
-  <div class="columns is-mobile is-centered">
+  <div class="columns is-mobile is-centered m-3">
     <div class="field has-addons">
       <div class="control">
         <input
@@ -24,17 +24,16 @@
       </div>
     </div>
   </div>
-      <p>
-      {{ refSearchString }}
-      </p>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from 'vue';
 import { Search } from '@/domain/models/Search'
+import { SearchResponse } from '@/domain/models/SearchResponse'
 
 export default defineComponent({
-  setup() {
+  emits: ['passDataToParent'],
+  setup(props, { emit }) {
 
     const refSearchString = ref<string>('')
     let search: Search
@@ -43,8 +42,14 @@ export default defineComponent({
       search = new Search(refSearchString.value)
     })
 
-    const triggerSearch = () => {
-      search.getPlayer()
+
+    let searchResponse: SearchResponse
+    const triggerSearch = async () => {
+      const result = await search.getPlayer()
+      if (result !== undefined) {
+        searchResponse = result
+        emit('passDataToParent', { meta: searchResponse.meta, playerList: searchResponse.playerList })
+      }
     }
 
     return {
