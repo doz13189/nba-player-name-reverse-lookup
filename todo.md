@@ -3,6 +3,7 @@
 - (must) axios のエラー時のテストを作成する
 - (must) 検索結果を画面に表示する
 - (must) 検索結果を値オブジェクトとして扱う
+- (must) any を使っていて、解消するべきところを解消する
 
 
 ## done
@@ -15,6 +16,8 @@
 
 
 ## memo
+
+- Q1
 
 ```sh
 ts-jest[versions] (WARN) Version 4.4.3 of typescript installed has not been tested with ts-jest. If you're experiencing issues, consider using a supported version (>=2.7.0 <4.0.0). Please do not report issues in ts-jest if you are using unsupported versions.
@@ -29,4 +32,10 @@ TS2305: Module '"../../node_modules/vue/dist/vue"' has no exported member 'ref'.
     28 |
     29 | <script lang="ts">
   > 30 | import { defineComponent, ref } from 'vue';
+```
+
+- Q2
+
+```sh
+error    Don't use `object` as a type. The `object` type is currently hard to use ([see this issue](https://github.com/microsoft/TypeScript/issues/21732)
 ```

@@ -19,8 +19,8 @@ export default defineComponent({
   },
   setup() {
 
-    let reactiveMeta = reactive<object>({})
-    let reactivePlayerList = reactive<object>({})
+    let reactiveMeta = reactive<any>({})
+    let reactivePlayerList = reactive<any>({})
 
     const receiveSearchResult = (event: { meta: MetaIF, playerList: PlayerIF }) => {
       Object.assign(reactiveMeta, event.meta)

@@ -2,11 +2,10 @@ import { Search } from '@/domain/models/Search'
 import {
   SearchResponse,
   SearchResponseIF,
+  MetaIF,
+  PlayerIF
 } from '@/domain/models/SearchResponse'
 
-import axios from 'axios'
-jest.mock('axios')
-const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 const response: SearchResponseIF =  { data:
   [{
@@ -58,17 +57,13 @@ describe('List.ts', () => {
   
   it('検索結果を表示するテスト', async () => {
 
-    mockedAxios.get.mockResolvedValue({ data: response1 })
+    let meta: MetaIF = response.meta
+    let playerList: PlayerIF = response.data
+    const metaAndPlayerlist = new List(meta, playerList)
 
-    const playerName: string = 'gafford'
-    const search = new Search(playerName)
-    const searchResponse = await search.getPlayer()
-
-    if (searchResponse) {
-      expect(searchResponse.meta).toEqual(new SearchResponse(response1).meta)
-      expect(searchResponse.playerList).toEqual(new SearchResponse(response1).playerList)
-      expect(searchResponse.playerListLength()).toBe(1)
-    }
+    expect(searchResponse.meta).toEqual(new SearchResponse(response1).meta)
+    expect(searchResponse.playerList).toEqual(new SearchResponse(response1).playerList)
+    expect(searchResponse.playerListLength()).toBe(1)
 
   })
 

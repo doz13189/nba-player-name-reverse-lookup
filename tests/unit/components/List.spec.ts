@@ -71,8 +71,11 @@ describe('Search.vue', () => {
 
     expect(searchResultView[0]).toBe('Chasson')
     expect(searchResultView[0]).toBe('Randle')
+    expect(searchResultView[0]).toBe('Orlando Magic')
+    
     expect(searchResultView[1]).toBe('Julius')
     expect(searchResultView[1]).toBe('Randle')
+    expect(searchResultView[1]).toBe('New York Knicks')
     
   })
 })
