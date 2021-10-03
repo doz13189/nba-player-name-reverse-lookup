@@ -1,13 +1,14 @@
 ## todo
-- (must) ut の jest のモック化
 - (must) axios のエラー時の動作を定義する
+- (must) axios のエラー時のテストを作成する
+
+## done
+- (must) ut の jest のモック化
+- (must) 検索できるようにする
+  - 検索ボックスに文字を入力して、検索実行ボタンを押すと、レスポンスが返ってくる
 - (should) api response の型定義をちゃんとする
   - (should) Team の division や TeamName は詳細に型を決めれる
   - (should) meta 情報の値のバリエーションを確認して、型情報に反映する
-
-## done
-- (must) 検索できるようにする
-  - 検索ボックスに文字を入力して、検索実行ボタンを押すと、レスポンスが返ってくる
 
 ## memo
 
