@@ -1,21 +1,24 @@
 <template>
   <div class="home">
     <Search @passDataToParent="receiveSearchResult($event)" />
-    <List :meta="reactiveMeta" :playerList="reactivePlayerList"  />
+    <MetaList :meta="reactiveMeta" />
+    <PlayerList :playerList="reactivePlayerList" />
   </div>
 
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
-import Search from '@/components/Search.vue';
-import List from '@/components/List.vue';
+import { defineComponent, reactive } from 'vue'
+import Search from '@/components/Search.vue'
+import PlayerList from '@/components/PlayerList.vue'
+import MetaList from '@/components/MetaList.vue'
 import { MetaIF, PlayerIF } from '@/domain/models/SearchResponse'
 
 export default defineComponent({
   components: {
     Search,
-    List
+    MetaList,
+    PlayerList
   },
   setup() {
 

@@ -42,7 +42,6 @@ export default defineComponent({
       search = new Search(refSearchString.value)
     })
 
-
     let searchResponse: SearchResponse
     const triggerSearch = async () => {
       const result = await search.getPlayer()

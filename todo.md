@@ -39,3 +39,8 @@ TS2305: Module '"../../node_modules/vue/dist/vue"' has no exported member 'ref'.
 ```sh
 error    Don't use `object` as a type. The `object` type is currently hard to use ([see this issue](https://github.com/microsoft/TypeScript/issues/21732)
 ```
+
+ありがとうございます。
+お話は嬉しいのですが、今、NRI でも新しいプロジェクトの立ち上げに参加しているので、年度内は転職の気持ちはないです。
+ご期待にそえず申し訳ありません。
+
