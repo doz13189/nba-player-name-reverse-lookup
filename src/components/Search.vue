@@ -47,7 +47,7 @@ export default defineComponent({
       const result = await search.getPlayer()
       if (result !== undefined) {
         searchResponse = result
-        emit('passDataToParent', { meta: searchResponse.meta, playerList: searchResponse.playerList })
+        emit('passDataToParent', { meta: searchResponse.meta.meta, playerList: searchResponse.playerList.playerList })
       }
     }
 

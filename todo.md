@@ -4,6 +4,9 @@
 - (must) 検索結果を画面に表示する
 - (must) 検索結果を値オブジェクトとして扱う
 - (must) any を使っていて、解消するべきところを解消する
+- (must) meta のファクトリーを作成する
+- (must) playerList のファクトリーを作成する
+- (must) object を assing しているため、前回オブジェクトが残る
 
 
 ## done
