@@ -3,12 +3,16 @@
     <Search @passDataToParent="receiveSearchResult($event)" />
     <MetaList :meta="reactiveMeta" />
     <PlayerList :playerList="reactivePlayerList" />
+
+    {{ location }}
+    {{ geolocation }}
+
   </div>
 
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, provide, ref } from 'vue'
 import Search from '@/components/Search.vue'
 import PlayerList from '@/components/PlayerList.vue'
 import MetaList from '@/components/MetaList.vue'
@@ -22,6 +26,21 @@ export default defineComponent({
   },
   setup() {
 
+    const location = ref<string>('North Pole')
+    const geolocation = reactive<object>({
+      longitude: 90,
+      latitude: 135
+    })
+
+    const updateLocation: Function = (): void => {
+      location.value = 'South Pole'
+    }
+
+
+    provide('location', location)
+    provide('geolocation', geolocation)
+    provide('updateLocation', updateLocation)
+
     let reactiveMeta = reactive<any>({})
     let reactivePlayerList = reactive<any>({})
 
@@ -31,6 +50,8 @@ export default defineComponent({
     }
 
     return {
+      location,
+      geolocation,
       receiveSearchResult,
       reactiveMeta,
       reactivePlayerList

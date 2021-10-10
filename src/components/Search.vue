@@ -23,17 +23,23 @@
         </button>
       </div>
     </div>
+    
+    <button v-on:click="updateUserLocation()"></button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from 'vue';
+import { defineComponent, ref, reactive, watchEffect, inject } from 'vue';
 import { Search } from '@/domain/models/Search'
 import { SearchResponse } from '@/domain/models/SearchResponse'
 
 export default defineComponent({
   emits: ['passDataToParent'],
   setup(props, { emit }) {
+
+    const userLocation = inject('location', 'The Universe')
+    const userGeolocation = inject('geolocation')
+    const updateUserLocation = inject('updateLocation')
 
     const refSearchString = ref<string>('')
     let search: Search
@@ -52,6 +58,7 @@ export default defineComponent({
     }
 
     return {
+      updateUserLocation,
       refSearchString,
       triggerSearch
     }
