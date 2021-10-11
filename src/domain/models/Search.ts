@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { SearchResponse, SearchResponseService } from '@/domain/models/SearchResponse'
+import { SearchResponse, SearchResponseIF } from '@/domain/models/SearchResponse'
 
 
 class Search {
@@ -40,7 +40,7 @@ class Search {
 
       const response = await this.fetch()
 
-      if (SearchResponseService.isSearchResponse(response)) {
+      if (this.isGetPlayerResponse(response)) {
         return new SearchResponse(response)
       }
 
@@ -49,9 +49,15 @@ class Search {
     }
   }
 
+  // https://typescript-jp.gitbook.io/deep-dive/type-system/typeguard#yznotype-guard
+  isGetPlayerResponse(checkTarget: any): checkTarget is SearchResponseIF {
+    return (checkTarget.data !== undefined) && (checkTarget.meta !== undefined)
+  }
+
   get searchString() {
     return this._searchString
   }
+  
 }
 
 export {

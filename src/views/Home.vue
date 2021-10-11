@@ -4,8 +4,9 @@
     <MetaList :meta="reactiveMeta" />
     <PlayerList :playerList="reactivePlayerList" />
 
-    {{ location }}
-    {{ geolocation }}
+    <p>location : {{ location }}</p>
+    <!-- {{ geolocation }} -->
+    {{ a }}
 
   </div>
 
@@ -27,19 +28,60 @@ export default defineComponent({
   setup() {
 
     const location = ref<string>('North Pole')
-    const geolocation = reactive<object>({
-      longitude: 90,
-      latitude: 135
-    })
+    // const geolocation = reactive<object>({
+    //   longitude: 90,
+    //   latitude: 135
+    // })
 
-    const updateLocation: Function = (): void => {
-      location.value = 'South Pole'
+    const updateLocation: (value: string) => void = (value: string): void => {
+      location.value = value
     }
 
 
     provide('location', location)
-    provide('geolocation', geolocation)
+    // provide('geolocation', geolocation)
     provide('updateLocation', updateLocation)
+
+    // provide('SearchResponse', new PlayerList([{
+    //     id : 0,
+    //     first_name : '',
+    //     height_feet : null,
+    //     height_inches : null,
+    //     last_name : '',
+    //     position : '',
+    //     team : {
+    //       id: 0,
+    //       abbreviation : '',
+    //       city : '',
+    //       conference : '',
+    //       division : '',
+    //       full_name : '',
+    //       name : ''
+    //     },
+    //     weight_pounds : null
+    //   }])
+    // )
+    const a = [{
+        id : 0,
+        first_name : '',
+        height_feet : null,
+        height_inches : null,
+        last_name : '',
+        position : '',
+        team : {
+          id: 0,
+          abbreviation : '',
+          city : '',
+          conference : '',
+          division : '',
+          full_name : '',
+          name : ''
+        },
+        weight_pounds : null
+      }]
+
+    
+    provide('SearchResponse', reactive(a))
 
     let reactiveMeta = reactive<any>({})
     let reactivePlayerList = reactive<any>({})
@@ -50,8 +92,9 @@ export default defineComponent({
     }
 
     return {
+      a,
       location,
-      geolocation,
+      // geolocation,
       receiveSearchResult,
       reactiveMeta,
       reactivePlayerList

@@ -32,14 +32,6 @@ interface SearchResponseIF {
   meta: MetaIF
 }
 
-class SearchResponseService {
-
-  // https://typescript-jp.gitbook.io/deep-dive/type-system/typeguard#yznotype-guard
-  static isSearchResponse(checkTarget: any): checkTarget is SearchResponseIF {
-    return (checkTarget.data !== undefined) && (checkTarget.meta !== undefined)
-  }
-
-}
 
 class SearchResponse {
 
@@ -99,7 +91,6 @@ export {
   SearchResponse,
   Meta,
   PlayerList,
-  SearchResponseService,
   SearchResponseIF,
   MetaIF,
   TeamIF,
