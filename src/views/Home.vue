@@ -1,13 +1,11 @@
 <template>
   <div class="home">
-    <Search @passDataToParent="receiveSearchResult($event)" />
+    <Search />
     
-    <!-- <MetaList :meta="reactiveMeta" />
-    <PlayerList :playerList="reactivePlayerList" /> -->
+    <!-- <MetaList :meta="reactiveMeta" /> -->
+    <!-- <PlayerList :playerList="reactivePlayerList" /> -->
 
-    <p>location : {{ location }}</p>
-    <!-- {{ geolocation }} -->
-    {{ response }}
+    <p>{{ searchResponse.data }}</p>
 
   </div>
 
@@ -16,91 +14,41 @@
 <script lang="ts">
 import { defineComponent, reactive, provide, ref } from 'vue'
 import Search from '@/components/Search.vue'
-import PlayerList from '@/components/PlayerList.vue'
-import MetaList from '@/components/MetaList.vue'
+// import PlayerList from '@/components/PlayerList.vue'
+// import MetaList from '@/components/MetaList.vue'
 // import { MetaIF, PlayerIF } from '@/domain/models/SearchResponse'
-import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
+import { SearchResponseOIF, MetaOIF, PlayerOIF } from '@/domain/models/SearchResponseOIF'
+import { SearchResponseFactory } from '@/domain/models/SearchResponseFactory'
 
 
 export default defineComponent({
   components: {
     Search,
-    MetaList,
-    PlayerList
+    // MetaList,
+    // PlayerList
   },
   setup() {
 
-    const location = ref<string>('North Pole')
-    const response = reactive({})
-    // const geolocation = reactive<object>({
-    //   longitude: 90,
-    //   latitude: 135
-    // })
-
-    const updateLocation = (value: any): void => {
-      Object.assign(response, value)
+    // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
+    interface reactiveSearchResponseOIF {
+      data : SearchResponseOIF
     }
 
-    provide('location', location)
-    provide('updateLocation', updateLocation)
+    // 空のオブジェクトを定義
+    const searchResponse = reactive<reactiveSearchResponseOIF>({ data: SearchResponseFactory.createSearchResponse() })
 
-    // provide('SearchResponse', new PlayerList([{
-    //     id : 0,
-    //     first_name : '',
-    //     height_feet : null,
-    //     height_inches : null,
-    //     last_name : '',
-    //     position : '',
-    //     team : {
-    //       id: 0,
-    //       abbreviation : '',
-    //       city : '',
-    //       conference : '',
-    //       division : '',
-    //       full_name : '',
-    //       name : ''
-    //     },
-    //     weight_pounds : null
-    //   }])
-    // )
-    const a = [{
-        id : 0,
-        first_name : '',
-        height_feet : null,
-        height_inches : null,
-        last_name : '',
-        position : '',
-        team : {
-          id: 0,
-          abbreviation : '',
-          city : '',
-          conference : '',
-          division : '',
-          full_name : '',
-          name : ''
-        },
-        weight_pounds : null
-      }]
+    // 子コンポーネントに渡す用の関数
+    const updateSearchResponse = (value: SearchResponseOIF): void => {
+      searchResponse.data = value
+    }
 
-    
-    provide('SearchResponse', reactive(a))
+    provide('updateSearchResponse', updateSearchResponse)
 
-    let reactiveMeta = reactive<any>({})
-    let reactivePlayerList = reactive<any>({})
-
-    // const receiveSearchResult = (event: { meta: MetaIF, playerList: PlayerIF }) => {
-    //   Object.assign(reactiveMeta, event.meta)
-    //   Object.assign(reactivePlayerList, event.playerList)
-    // }
+    // provide('playerList', searchResponse.data.data)
+    // provide('meta', searchResponse.data.meta)
 
     return {
-      a,
-      location,
-      response,
-      // geolocation,
-      // receiveSearchResult,
-      reactiveMeta,
-      reactivePlayerList
+      searchResponse
     }
   }
 });

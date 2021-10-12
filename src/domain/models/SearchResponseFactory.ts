@@ -1,3 +1,6 @@
+import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
+
+
 // import {
 //   Meta,
 //   PlayerList,
@@ -46,44 +49,44 @@
 
 // }
 
-// class SearchResponseFactory {
+class SearchResponseFactory {
 
-//   createSearchResponse(): SearchResponse {
+  static createSearchResponse(): SearchResponseOIF {
 
-//     return new SearchResponse({
-//       meta: {
-//         total_pages : 0,
-//         current_page : 0,
-//         next_page : 0,
-//         per_page : 0,
-//         total_count : 0
-//       },
-//       data: [{
-//         id : 0,
-//         first_name : '',
-//         height_feet : null,
-//         height_inches : null,
-//         last_name : '',
-//         position : '',
-//         team : {
-//           id: 0,
-//           abbreviation : '',
-//           city : '',
-//           conference : '',
-//           division : '',
-//           full_name : '',
-//           name : ''
-//         },
-//         weight_pounds : null
-//       }]
-//     })
+    return {
+      meta: {
+        total_pages : 0,
+        current_page : 0,
+        next_page : 0,
+        per_page : 0,
+        total_count : 0
+      },
+      data: [{
+        id : 0,
+        first_name : '',
+        height_feet : null,
+        height_inches : null,
+        last_name : '',
+        position : '',
+        team : {
+          id: 0,
+          abbreviation : '',
+          city : '',
+          conference : '',
+          division : '',
+          full_name : '',
+          name : ''
+        },
+        weight_pounds : null
+      }]
+    }
 
-//   }
+  }
 
-// }
+}
 
-// export {
-//   SearchResponseFactory
-//   // MetaFactory,
-//   // PlayerListFactory
-// }
+export {
+  SearchResponseFactory
+  // MetaFactory,
+  // PlayerListFactory
+}

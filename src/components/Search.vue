@@ -15,10 +15,9 @@
           -->
       </div>
       <div class="control">
-        
-        <!-- @click="triggerSearch()" -->
+
         <button class="button is-rounded is-primary"
-          @click="updateUserLocation('aaa')"
+          @click="triggerSearch()"
           data-testid="search-button">
           SEARCH
         </button>
@@ -31,38 +30,37 @@
 <script lang="ts">
 import { defineComponent, ref, watchEffect, inject } from 'vue';
 import { Search } from '@/domain/models/Search'
-// import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
+import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
 
 export default defineComponent({
-  emits: ['passDataToParent'],
   setup() {  
 
-    // const userLocation = inject('location', 'The Universe')
-    // const userGeolocation = inject('geolocation')
-    const updateUserLocation: any = inject('updateLocation')
-    
+    type updateSearchResponseType = (value: SearchResponseOIF) => void
+    const updateSearchResponse = inject<updateSearchResponseType>('updateSearchResponse')
 
     const refSearchString = ref<string>('')
     let search: Search
     
     watchEffect(() => {
+      // 
       search = new Search(refSearchString.value)
     })
 
-    // let searchResponse: SearchResponseOIF
     const triggerSearch = async () => {
+
+      // 検索の実行
       const result = await search.getPlayer()
-      if (result !== undefined) {
-        if (updateUserLocation) {
-          updateUserLocation(result)
-        }
-        // inject('SearchResponse', searchResponse)
-        // emit('passDataToParent', { meta: searchResponse.meta.meta, playerList: searchResponse.playerList.playerList })
-      }
+
+      // 検索結果を確認
+      if (result === undefined) { return }
+
+      // 検索結果が問題ない場合、レスポンスを親コンポーネントに送る
+      const searchResponse: SearchResponseOIF = result
+      if (updateSearchResponse) { updateSearchResponse(searchResponse) }
+
     }
 
     return {
-      updateUserLocation,
       refSearchString,
       triggerSearch
     }
