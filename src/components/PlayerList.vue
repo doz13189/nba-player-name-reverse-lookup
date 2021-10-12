@@ -1,6 +1,8 @@
 <template>
 
-  <div v-if="Boolean(Object.keys(reactivePlayerList).length)">
+  {{ playerList.data.data }}
+
+  <!-- <div v-if="Boolean(Object.keys(playerList).length)">
 
     <table class="table is-bordered" align="center">
       <thead>
@@ -9,7 +11,7 @@
       </thead>
 
       <tbody>
-        <tr v-for="player in reactivePlayerList"
+        <tr v-for="player in playerList"
             :key="player.id"
             >
           <td >
@@ -22,45 +24,26 @@
       </tbody>
     </table>
 
-  </div>
+  </div> -->
 
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watchEffect } from 'vue';
+import { defineComponent, inject, isReactive } from 'vue';
 // import { PlayerList } from '@/domain/models/SearchResponse'
+// import { PlayerOIF } from '@/domain/models/SearchResponseOIF'
+import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
+
 
 export default defineComponent({
-  props: ['playerList'],
-  setup(props) {
+  setup() {
 
-    let reactivePlayerList = reactive<any>({})
-    // let players: PlayerList = new PlayerList([{
-    //     id : 0,
-    //     first_name : '',
-    //     height_feet : null,
-    //     height_inches : null,
-    //     last_name : '',
-    //     position : '',
-    //     team : {
-    //       id: 0,
-    //       abbreviation : '',
-    //       city : '',
-    //       conference : '',
-    //       division : '',
-    //       full_name : '',
-    //       name : ''
-    //     },
-    //     weight_pounds : null
-    //   }]
-    // )
-
-    watchEffect(() => {
-      Object.assign(reactivePlayerList, props.playerList)
-    })
+    // 検索結果のレスポンスを受け取る
+    const playerList = inject<SearchResponseOIF>('playerList')
+    console.log(isReactive(playerList))
 
     return {
-      reactivePlayerList
+      playerList
     }
     
   }

@@ -11,25 +11,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, watchEffect } from 'vue';
+import { defineComponent, reactive } from 'vue';
 // import { Meta, PlayerList } from '@/domain/models/SearchResponse'
 
 export default defineComponent({
-  props: ['meta'],
-  setup(props) {
+  setup() {
 
-    let reactiveMeta = reactive<any>({})
-    // let meta: Meta = new Meta({
-    //   total_pages : 0,
-    //   current_page : 0,
-    //   next_page : 0,
-    //   per_page : 0,
-    //   total_count : 0
-    // })
-
-    // watchEffect(() => {
-    //   meta = new Meta(Object.assign(reactiveMeta, props.meta))
-    // })
 
     return {
       reactiveMeta

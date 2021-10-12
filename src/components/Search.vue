@@ -35,14 +35,15 @@ import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
 export default defineComponent({
   setup() {  
 
-    type updateSearchResponseType = (value: SearchResponseOIF) => void
-    const updateSearchResponse = inject<updateSearchResponseType>('updateSearchResponse')
-
     const refSearchString = ref<string>('')
     let search: Search
+
+    // 検索結果のレスポンスを親コンポーネントに送る用の関数
+    type updateSearchResponseType = (value: SearchResponseOIF) => void
+    const updateSearchResponse = inject<updateSearchResponseType>('updateSearchResponse')
     
     watchEffect(() => {
-      // 
+      // 検索文字の入力によって値オブジェクトを生成
       search = new Search(refSearchString.value)
     })
 
