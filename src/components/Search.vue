@@ -31,15 +31,15 @@
 <script lang="ts">
 import { defineComponent, ref, watchEffect, inject } from 'vue';
 import { Search } from '@/domain/models/Search'
-import { SearchResponse } from '@/domain/models/SearchResponse'
+// import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
 
 export default defineComponent({
   emits: ['passDataToParent'],
-  setup(props, { emit }) {
+  setup() {  
 
     // const userLocation = inject('location', 'The Universe')
     // const userGeolocation = inject('geolocation')
-    const updateUserLocation = inject('updateLocation')
+    const updateUserLocation: any = inject('updateLocation')
     
 
     const refSearchString = ref<string>('')
@@ -49,31 +49,15 @@ export default defineComponent({
       search = new Search(refSearchString.value)
     })
 
-    let searchResponse: SearchResponse
+    // let searchResponse: SearchResponseOIF
     const triggerSearch = async () => {
       const result = await search.getPlayer()
       if (result !== undefined) {
-        searchResponse = result
-        console.log('inject')
-        inject('SearchResponse', [{
-          id : 1,
-          first_name : 'a',
-          height_feet : null,
-          height_inches : null,
-          last_name : '',
-          position : '',
-          team : {
-            id: 0,
-            abbreviation : '',
-            city : '',
-            conference : '',
-            division : '',
-            full_name : '',
-            name : ''
-          },
-          weight_pounds : null
-        }])
-        emit('passDataToParent', { meta: searchResponse.meta.meta, playerList: searchResponse.playerList.playerList })
+        if (updateUserLocation) {
+          updateUserLocation(result)
+        }
+        // inject('SearchResponse', searchResponse)
+        // emit('passDataToParent', { meta: searchResponse.meta.meta, playerList: searchResponse.playerList.playerList })
       }
     }
 

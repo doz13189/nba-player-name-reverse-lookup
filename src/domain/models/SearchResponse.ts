@@ -1,98 +1,71 @@
-interface PlayerIF {
-  id: number
-  first_name: string
-  height_feet: number | null
-  height_inches: number | null
-  last_name: string
-  position: string
-  team: TeamIF
-  weight_pounds: number | null
-}
-
-interface TeamIF {
-  id : number
-  abbreviation : string
-  city : string
-  conference : string
-  division : string
-  full_name : string
-  name : string
-}
-
-interface MetaIF {
-  total_pages : number
-  current_page : number
-  next_page : number | null
-  per_page : number
-  total_count : number
-}
-
-interface SearchResponseIF {
-  data: PlayerIF[]
-  meta: MetaIF
-}
+// import {
+//   PlayerOIF,
+//   TeamOIF,
+//   MetaOIF,
+//   SearchResponseOIF
+// } from '@/domain/models/SearchResponseOIF'
 
 
-class SearchResponse {
+// class SearchResponse {
 
-  private _meta: Meta
-  private _playerList: PlayerList
+//   private _meta: Meta
+//   private _playerList: PlayerList
 
-  constructor(response: SearchResponseIF) {
-    this._meta = new Meta(response.meta)
-    this._playerList = new PlayerList(response.data)
-  }
+//   constructor(response: SearchResponseIF) {
+//     this._meta = new Meta(response.meta)
+//     this._playerList = new PlayerList(response.data)
+//   }
 
-  get meta(): Meta {
-    return this._meta
-  }
+//   get meta(): Meta {
+//     return this._meta
+//   }
 
-  get playerList(): PlayerList {
-    return this._playerList
-  }
+//   get playerList(): PlayerList {
+//     return this._playerList
+//   }
 
-}
+// }
 
-class Meta {
+// class Meta {
 
-  private _meta: MetaIF
+//   private _meta: MetaIF
 
-  constructor(response: MetaIF) {
-    this._meta = response
-  }
+//   constructor(response: MetaIF) {
+//     this._meta = response
+//   }
 
-  get meta(): MetaIF {
-    return this._meta
-  }
+//   get meta(): MetaIF {
+//     return this._meta
+//   }
 
-}
+// }
 
-class PlayerList {
+// class PlayerList {
 
-  private _playerList: PlayerIF[]
+//   private _playerList: PlayerIF[]
 
-  constructor(response: PlayerIF[]) {
-    this._playerList = response
-  }
+//   constructor(response: PlayerIF[]) {
+//     this._playerList = response
+//   }
 
-  playerListLength(): number {
-    return this._playerList.length
-  }
+//   playerListLength(): number {
+//     return this._playerList.length
+//   }
 
-  get playerList(): PlayerIF[] {
-    return this._playerList
-  }
+//   get playerList(): PlayerIF[] {
+//     return this._playerList
+//   }
 
-}
+// }
 
 
 
-export {
-  SearchResponse,
-  Meta,
-  PlayerList,
-  SearchResponseIF,
-  MetaIF,
-  TeamIF,
-  PlayerIF
-}
+// export {
+//   SearchResponse,
+//   Meta,
+//   PlayerList,
+//   SearchResponseIF,
+//   MetaIF,
+//   TeamIF,
+//   PlayerIF
+// }

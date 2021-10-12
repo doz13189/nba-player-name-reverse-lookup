@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent, reactive, watchEffect } from 'vue';
-import { PlayerList } from '@/domain/models/SearchResponse'
+// import { PlayerList } from '@/domain/models/SearchResponse'
 
 export default defineComponent({
   props: ['playerList'],
