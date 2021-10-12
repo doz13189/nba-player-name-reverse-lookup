@@ -1,107 +1,71 @@
-interface PlayerIF {
-  id: number
-  first_name: string
-  height_feet: number | null
-  height_inches: number | null
-  last_name: string
-  position: string
-  team: TeamIF
-  weight_pounds: number | null
-}
+// import {
+//   PlayerOIF,
+//   TeamOIF,
+//   MetaOIF,
+//   SearchResponseOIF
+// } from '@/domain/models/SearchResponseOIF'
 
-interface TeamIF {
-  id : number
-  abbreviation : string
-  city : string
-  conference : string
-  division : string
-  full_name : string
-  name : string
-}
 
-interface MetaIF {
-  total_pages : number
-  current_page : number
-  next_page : number | null
-  per_page : number
-  total_count : number
-}
+// class SearchResponse {
 
-interface SearchResponseIF {
-  data: PlayerIF[]
-  meta: MetaIF
-}
+//   private _meta: Meta
+//   private _playerList: PlayerList
 
-class SearchResponseService {
+//   constructor(response: SearchResponseIF) {
+//     this._meta = new Meta(response.meta)
+//     this._playerList = new PlayerList(response.data)
+//   }
 
-  // https://typescript-jp.gitbook.io/deep-dive/type-system/typeguard#yznotype-guard
-  static isSearchResponse(checkTarget: any): checkTarget is SearchResponseIF {
-    return (checkTarget.data !== undefined) && (checkTarget.meta !== undefined)
-  }
+//   get meta(): Meta {
+//     return this._meta
+//   }
 
-}
+//   get playerList(): PlayerList {
+//     return this._playerList
+//   }
 
-class SearchResponse {
+// }
 
-  private _meta: Meta
-  private _playerList: PlayerList
+// class Meta {
 
-  constructor(response: SearchResponseIF) {
-    this._meta = new Meta(response.meta)
-    this._playerList = new PlayerList(response.data)
-  }
+//   private _meta: MetaIF
 
-  get meta(): Meta {
-    return this._meta
-  }
+//   constructor(response: MetaIF) {
+//     this._meta = response
+//   }
 
-  get playerList(): PlayerList {
-    return this._playerList
-  }
+//   get meta(): MetaIF {
+//     return this._meta
+//   }
 
-}
+// }
 
-class Meta {
+// class PlayerList {
 
-  private _meta: MetaIF
+//   private _playerList: PlayerIF[]
 
-  constructor(response: MetaIF) {
-    this._meta = response
-  }
+//   constructor(response: PlayerIF[]) {
+//     this._playerList = response
+//   }
 
-  get meta(): MetaIF {
-    return this._meta
-  }
+//   playerListLength(): number {
+//     return this._playerList.length
+//   }
 
-}
+//   get playerList(): PlayerIF[] {
+//     return this._playerList
+//   }
 
-class PlayerList {
-
-  private _playerList: PlayerIF[]
-
-  constructor(response: PlayerIF[]) {
-    this._playerList = response
-  }
-
-  playerListLength(): number {
-    return this._playerList.length
-  }
-
-  get playerList(): PlayerIF[] {
-    return this._playerList
-  }
-
-}
+// }
 
 
 
-export {
-  SearchResponse,
-  Meta,
-  PlayerList,
-  SearchResponseService,
-  SearchResponseIF,
-  MetaIF,
-  TeamIF,
-  PlayerIF
-}
+// export {
+//   SearchResponse,
+//   Meta,
+//   PlayerList,
+//   SearchResponseIF,
+//   MetaIF,
+//   TeamIF,
+//   PlayerIF
+// }
