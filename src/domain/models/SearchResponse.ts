@@ -1,4 +1,5 @@
 import {
+  MetaOIF,
   PlayerOIF
 } from '@/domain/models/SearchResponseOIF'
 
@@ -23,19 +24,27 @@ import {
 
 // }
 
-// class Meta {
+class Meta {
 
-//   private _meta: MetaIF
+  private _meta: MetaOIF
 
-//   constructor(response: MetaIF) {
-//     this._meta = response
-//   }
+  constructor(response: MetaOIF) {
+    this._meta = response
+  }
 
-//   get meta(): MetaIF {
-//     return this._meta
-//   }
+  isMeta(): boolean {
+    return this._meta.current_page !== 0
+  }
 
-// }
+  isOver100(): boolean {
+    return this._meta.total_count > 1
+  }
+
+  get meta(): MetaOIF {
+    return this._meta
+  }
+
+}
 
 class PlayerList {
 
@@ -58,5 +67,6 @@ class PlayerList {
 
 
 export {
+  Meta,
   PlayerList
 }

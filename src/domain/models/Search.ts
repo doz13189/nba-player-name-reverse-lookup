@@ -38,7 +38,7 @@ class Search {
 
     try {
 
-      const response = await this.fetch(`players?search=${this._searchString}`)
+      const response = await this.fetch(`players?search=${this._searchString}&per_page=100`)
 
       if (this.isGetPlayerResponse(response)) {
         return response

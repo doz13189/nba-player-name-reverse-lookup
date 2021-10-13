@@ -1,4 +1,9 @@
 <template>
+
+  <p class="is-5 has-text-black">
+    日本語の発音を知りたい NBA 選手名を入力してください。
+  </p>
+
   <div class="columns is-mobile is-centered m-3">
     <div class="field has-addons">
       <div class="control">

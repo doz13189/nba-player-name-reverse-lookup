@@ -1,10 +1,20 @@
 <template>
+
   <img alt="Vue logo" src="@/assets/logo.png" width="50" class="mt-5">
+
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+
+    <router-link to="/">Search</router-link> |
+    <router-link to="/about">Administrator</router-link>
+
   </div>
+
   <router-view/>
+
+  <p class="is-5 has-text-black m-5">
+    Copyright © since 2021 Takahiro Kato All Rights Reserved.
+  </p>
+
 </template>
 
 <style>
