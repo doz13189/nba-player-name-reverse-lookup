@@ -5,11 +5,6 @@
     <MetaList />
     <PlayerList />
 
-    <hr>
-    <p>debug</p>
-
-    {{ searchResponse }}
-
   </div>
 
 </template>

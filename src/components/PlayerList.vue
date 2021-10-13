@@ -1,33 +1,40 @@
 <template>
 
   <div v-if="tableDisplay">
+    <div class=" my-5">
 
-    <table class="table is-bordered" align="center">
-      <thead>
-        <th>team</th>
-        <th>name</th>
-      </thead>
+      <table class="table is-bordered" align="center">
+        <thead>
+          <th>所属チーム</th>
+          <th>選手英語名</th>
+          <th>選手日本語名</th>
+          <th>承認</th>
+        </thead>
 
-      <tbody>
-        <tr v-for="player in reactivePlayerList.data"
-            :key="player.id"
-            >
-          <td >
-            {{ player.team.full_name }}
-          </td>
-          <td >
-            {{ player.first_name }} {{ player.last_name }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr v-for="player in reactivePlayerList.data"
+              :key="player.id"
+              >
+            <td>
+              {{ player.team.full_name }}
+            </td>
+            <td>
+              {{ player.first_name }} {{ player.last_name }}
+            </td>
+            <td>-</td>
+            <td>非承認</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
 
   </div>
 
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, watchEffect,ref } from 'vue';
+import { defineComponent, inject, watchEffect,ref } from 'vue'
 import { PlayerList } from '@/domain/models/SearchResponse'
 import { PlayerOIF } from '@/domain/models/SearchResponseOIF'
 
@@ -42,7 +49,7 @@ export default defineComponent({
     // 検索結果のレスポンスを受け取る
     const reactivePlayerList = inject<reactivePlayerOIF>('playerList')
 
-    // 画面用の変数を定義
+    // 画面のテーブル表示・非表示の分岐用の変数を定義
     const tableDisplay = ref<boolean>(false)
 
     // 
