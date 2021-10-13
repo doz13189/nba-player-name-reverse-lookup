@@ -1,13 +1,11 @@
 import axios from 'axios'
-// import { SearchResponse } from '@/domain/models/SearchResponse'
 import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
-// import { MetaFactory, PlayerListFactory } from '@/domain/models/SearchResponseFactory'
 
 
 class Search {
 
   private _searchString: string
-  private _baseURL: string = 'https://www.balldontlie.io/api/v1/'
+  private _baseURL = 'https://www.balldontlie.io/api/v1/'
 
   constructor(searchString: string) {
     this._searchString = searchString

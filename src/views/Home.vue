@@ -2,21 +2,23 @@
   <div class="home">
     <Search />
     
-    <!-- <MetaList :meta="reactiveMeta" /> -->
-    <!-- <PlayerList :playerList="reactivePlayerList" /> -->
+    <MetaList />
+    <PlayerList />
 
-    <p>{{ searchResponse.data }}</p>
+    <hr>
+    <p>debug</p>
+
+    {{ searchResponse }}
 
   </div>
 
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, provide, ref } from 'vue'
+import { defineComponent, reactive, readonly, provide, watchEffect } from 'vue'
 import Search from '@/components/Search.vue'
-// import PlayerList from '@/components/PlayerList.vue'
-// import MetaList from '@/components/MetaList.vue'
-// import { MetaIF, PlayerIF } from '@/domain/models/SearchResponse'
+import PlayerList from '@/components/PlayerList.vue'
+import MetaList from '@/components/MetaList.vue'
 import { SearchResponseOIF, MetaOIF, PlayerOIF } from '@/domain/models/SearchResponseOIF'
 import { SearchResponseFactory } from '@/domain/models/SearchResponseFactory'
 
@@ -24,8 +26,8 @@ import { SearchResponseFactory } from '@/domain/models/SearchResponseFactory'
 export default defineComponent({
   components: {
     Search,
-    // MetaList,
-    // PlayerList
+    MetaList,
+    PlayerList
   },
   setup() {
 
@@ -38,14 +40,35 @@ export default defineComponent({
     const searchResponse = reactive<reactiveSearchResponseOIF>({ data: SearchResponseFactory.createSearchResponse() })
 
     // 子コンポーネントに渡す用の関数
-    const updateSearchResponse = (value: SearchResponseOIF): void => {
-      searchResponse.data = value
+    const updateSearchResponse = (searchResponseValue: SearchResponseOIF): void => {
+      searchResponse.data = searchResponseValue
     }
-
     provide('updateSearchResponse', updateSearchResponse)
 
-    // provide('playerList', searchResponse.data.data)
-    // provide('meta', searchResponse.data.meta)
+
+    // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
+    interface reactiveMetaOIF {
+      data : MetaOIF
+    }
+
+    // 空のオブジェクトを定義
+    const meta = reactive<reactiveMetaOIF>({ data: SearchResponseFactory.createSearchResponse().meta })
+
+    // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
+    interface reactivePlayerOIF {
+      data : PlayerOIF[]
+    }
+
+    // 空のオブジェクトを定義
+    const playerList = reactive<reactivePlayerOIF>({ data: SearchResponseFactory.createSearchResponse().data })
+
+    watchEffect(() => {
+      meta.data = searchResponse.data.meta
+      playerList.data = searchResponse.data.data
+    })
+
+    provide('meta', readonly(meta))
+    provide('playerList', readonly(playerList))
 
     return {
       searchResponse
