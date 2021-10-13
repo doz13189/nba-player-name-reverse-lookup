@@ -1,8 +1,6 @@
 <template>
 
-  {{ playerList.data.data }}
-
-  <!-- <div v-if="Boolean(Object.keys(playerList).length)">
+  <div v-if="tableDisplay">
 
     <table class="table is-bordered" align="center">
       <thead>
@@ -11,7 +9,7 @@
       </thead>
 
       <tbody>
-        <tr v-for="player in playerList"
+        <tr v-for="player in reactivePlayerList.data"
             :key="player.id"
             >
           <td >
@@ -24,26 +22,39 @@
       </tbody>
     </table>
 
-  </div> -->
+  </div>
 
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, isReactive } from 'vue';
-// import { PlayerList } from '@/domain/models/SearchResponse'
-// import { PlayerOIF } from '@/domain/models/SearchResponseOIF'
-import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
-
+import { defineComponent, inject, watchEffect,ref } from 'vue';
+import { PlayerList } from '@/domain/models/SearchResponse'
+import { PlayerOIF } from '@/domain/models/SearchResponseOIF'
 
 export default defineComponent({
   setup() {
 
-    // 検索結果のレスポンスを受け取る
-    const playerList = inject<SearchResponseOIF>('playerList')
-    console.log(isReactive(playerList))
+    // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
+    interface reactivePlayerOIF {
+      data : PlayerOIF[]
+    }
 
+    // 検索結果のレスポンスを受け取る
+    const reactivePlayerList = inject<reactivePlayerOIF>('playerList')
+
+    // 画面用の変数を定義
+    const tableDisplay = ref<boolean>(false)
+
+    // 
+    watchEffect(() => {
+      if (reactivePlayerList) {
+        tableDisplay.value = new PlayerList(reactivePlayerList.data).isPlayerList()
+      }
+    })
+    
     return {
-      playerList
+      tableDisplay,
+      reactivePlayerList
     }
     
   }

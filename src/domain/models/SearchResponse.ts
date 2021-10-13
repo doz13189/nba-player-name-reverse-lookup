@@ -1,9 +1,6 @@
-// import {
-//   PlayerOIF,
-//   TeamOIF,
-//   MetaOIF,
-//   SearchResponseOIF
-// } from '@/domain/models/SearchResponseOIF'
+import {
+  PlayerOIF
+} from '@/domain/models/SearchResponseOIF'
 
 
 // class SearchResponse {
@@ -40,32 +37,26 @@
 
 // }
 
-// class PlayerList {
+class PlayerList {
 
-//   private _playerList: PlayerIF[]
+  private _playerList: PlayerOIF[]
 
-//   constructor(response: PlayerIF[]) {
-//     this._playerList = response
-//   }
+  constructor(response: PlayerOIF[]) {
+    this._playerList = response
+  }
 
-//   playerListLength(): number {
-//     return this._playerList.length
-//   }
+  isPlayerList(): boolean {
+    return this._playerList[0].id !== 0
+  }
 
-//   get playerList(): PlayerIF[] {
-//     return this._playerList
-//   }
+  get playerList(): PlayerOIF[] {
+    return this._playerList
+  }
 
-// }
+}
 
 
 
-// export {
-//   SearchResponse,
-//   Meta,
-//   PlayerList,
-//   SearchResponseIF,
-//   MetaIF,
-//   TeamIF,
-//   PlayerIF
-// }
+export {
+  PlayerList
+}

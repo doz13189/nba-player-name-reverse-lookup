@@ -1,22 +1,30 @@
 <template>
   <div>
     <p>
-      {{ reactiveMeta.total_pages }}
-      {{ reactiveMeta.current_page }}
-      {{ reactiveMeta.next_page }}
-      {{ reactiveMeta.per_page }}
-      {{ reactiveMeta.total_count }}
+      {{ reactiveMeta.data.total_pages }}
+      {{ reactiveMeta.data.current_page }}
+      {{ reactiveMeta.data.next_page }}
+      {{ reactiveMeta.data.per_page }}
+      {{ reactiveMeta.data.total_count }}
     </p>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue';
-// import { Meta, PlayerList } from '@/domain/models/SearchResponse'
+import { defineComponent, inject } from 'vue';
+import { MetaOIF } from '@/domain/models/SearchResponseOIF'
+
 
 export default defineComponent({
   setup() {
 
+    // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
+    interface reactiveMetaOIF {
+      data : MetaOIF
+    }
+
+    // 検索結果のレスポンスを受け取る
+    const reactiveMeta = inject<reactiveMetaOIF>('meta')
 
     return {
       reactiveMeta
