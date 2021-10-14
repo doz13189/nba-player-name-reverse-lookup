@@ -1,5 +1,5 @@
 <template>
   <div>
-    <h1>dozo13189@gmail.com</h1>
+    <p>選手名の日本語発音の統一が目的です。</p>
   </div>
 </template>
