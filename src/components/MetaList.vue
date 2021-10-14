@@ -16,7 +16,7 @@
       <div class="column"></div>
     </div>
     -->
-
+    
     <div v-if="warningDisplay">
       <div class=" my-5">
         <p class="has-text-danger">検索結果が 100 件を超えています。</p>

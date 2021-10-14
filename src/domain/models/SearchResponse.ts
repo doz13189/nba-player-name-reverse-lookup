@@ -37,7 +37,7 @@ class Meta {
   }
 
   isOver100(): boolean {
-    return this._meta.total_count > 1
+    return this._meta.total_pages > 1
   }
 
   get meta(): MetaOIF {
