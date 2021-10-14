@@ -1,12 +1,14 @@
 ## todo
 - (must) axios のエラー時の動作を定義する
 - (must) axios のエラー時のテストを作成する
-- (must) 検索結果を画面に表示する
-- (must) 検索結果を値オブジェクトとして扱う
 - (must) any を使っていて、解消するべきところを解消する
-- (must) meta のファクトリーを作成する
-- (must) playerList のファクトリーを作成する
-- (must) object を assing しているため、前回オブジェクトが残る
+- (must) JapaniseName の setup のコードからドメインのコードを抜いて分離する
+- (must) Approval の setup のコードからドメインのコードを抜いて分離する
+- (must) Google Analytics を機能させる
+- (must) UT を書く
+- (must) 存在しない選手名を検索したときのエラーを解消する
+- (must) 日本語選手名が登録されていない場合は、未登録と表示する
+- (must) About ページを書く
 
 
 ## done
@@ -16,6 +18,11 @@
 - (should) api response の型定義をちゃんとする
   - (should) Team の division や TeamName は詳細に型を決めれる
   - (should) meta 情報の値のバリエーションを確認して、型情報に反映する
+- (must) meta のファクトリーを作成する
+- (must) playerList のファクトリーを作成する
+- (must) 検索結果を画面に表示する
+- (must) 検索結果を値オブジェクトとして扱う
+- (must) object を assing しているため、前回オブジェクトが残る
 
 
 ## memo

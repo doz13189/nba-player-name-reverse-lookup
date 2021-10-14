@@ -17,7 +17,7 @@
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { firestoreProductionConfig } from '@/plugins/firestore'
-import { FirestoreService } from '@/domain/service/firestore'
+import { FirestoreService } from '@/domain/repository/firestore'
 
 
 export default defineComponent({
