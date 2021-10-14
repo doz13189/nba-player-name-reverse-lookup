@@ -7,8 +7,8 @@
         <thead>
           <th>所属チーム</th>
           <th>英語選手名</th>
-          <th>日本語選手名</th>
-          <th>発音合意状況</th>
+          <th>カタカナ表記</th>
+          <th>合意状況</th>
         </thead>
 
         <tbody>
