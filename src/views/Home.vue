@@ -59,8 +59,11 @@ export default defineComponent({
     const playerList = reactive<reactivePlayerOIF>({ data: SearchResponseFactory.createSearchResponse().data })
 
     watchEffect(() => {
-      meta.data = searchResponse.data.meta
-      playerList.data = searchResponse.data.data
+      // 以下の分岐はドメインロジックとして取り込むべき
+      if (searchResponse.data.data.length) {
+        meta.data = searchResponse.data.meta
+        playerList.data = searchResponse.data.data
+      }
     })
 
     provide('meta', readonly(meta))

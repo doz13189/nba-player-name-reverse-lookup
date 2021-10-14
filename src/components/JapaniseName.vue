@@ -38,7 +38,9 @@ export default defineComponent({
 
     const firestoreService =  new FirestoreService(firestoreProductionConfig)
     firestoreService.getDocument('players', String(props.playerId)).then(result => {
-      reactivePlayer.data = result
+      if (result) {
+        reactivePlayer.data = result
+      }
     })
 
     return {

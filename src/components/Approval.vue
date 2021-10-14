@@ -34,7 +34,11 @@ export default defineComponent({
 
     const firestoreService =  new FirestoreService(firestoreProductionConfig)
     firestoreService.getDocument('approval', String(props.playerId)).then(result => {
-      reactiveApproval.data = result
+
+      if (result) {
+        reactiveApproval.data = result
+      }
+      
     })
 
     return {
