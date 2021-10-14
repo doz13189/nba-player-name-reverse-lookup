@@ -6,9 +6,9 @@
       <table class="table is-bordered" align="center">
         <thead>
           <th>所属チーム</th>
-          <th>選手英語名</th>
-          <th>選手日本語名</th>
-          <th>承認</th>
+          <th>英語選手名</th>
+          <th>日本語選手名</th>
+          <th>発音合意状況</th>
         </thead>
 
         <tbody>
@@ -21,8 +21,12 @@
             <td>
               {{ player.first_name }} {{ player.last_name }}
             </td>
-            <td>-</td>
-            <td>非承認</td>
+            <td>
+              <JapaniseName :playerId="player.id" />
+            </td>
+            <td>
+              <Approval :playerId="player.id" />
+            </td>
           </tr>
         </tbody>
       </table>
@@ -38,7 +42,15 @@ import { defineComponent, inject, watchEffect,ref } from 'vue'
 import { PlayerList } from '@/domain/models/SearchResponse'
 import { PlayerOIF } from '@/domain/models/SearchResponseOIF'
 
+import JapaniseName from '@/components/JapaniseName.vue'
+import Approval from '@/components/Approval.vue'
+
+
 export default defineComponent({
+  components: {
+    JapaniseName,
+    Approval
+  },
   setup() {
 
     // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
