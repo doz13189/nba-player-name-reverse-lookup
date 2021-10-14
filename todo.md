@@ -2,7 +2,6 @@
 - (must) JapaniseName の setup のコードからドメインのコードを抜いて分離する
 - (must) Approval の setup のコードからドメインのコードを抜いて分離する
 - (must) any を使っていて、解消するべきところを解消する
-- (must) Google Analytics を機能させる
 - (must) UT を書く
 - (must) 存在しない選手名を検索したときのエラーを解消する
 - (must) 存在しない選手名を検索したときの「存在しない」ことを表示する
@@ -25,6 +24,7 @@
 - (must) object を assing しているため、前回オブジェクトが残る
 - (must) About ページを書く
 - (must) 日本語選手名が登録されていない場合は、未登録と表示する
+- (must) Google Analytics を機能させる
 
 
 ## memo
