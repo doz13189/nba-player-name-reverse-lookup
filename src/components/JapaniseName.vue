@@ -1,8 +1,20 @@
 <template>
 
-  <span>
-    {{ reactivePlayer.data.first_name }}・{{ reactivePlayer.data.last_name }}
-  </span>
+  <div v-if="reactivePlayer.data.first_name !== '' && reactivePlayer.data.last_name !== ''">
+
+    <span>
+      {{ reactivePlayer.data.first_name }}・{{ reactivePlayer.data.last_name }}
+    </span>
+    
+  </div>
+  <div v-else>
+    <span>
+      未登録
+    </span>
+  </div>
+
+
+
 
 </template>
 
