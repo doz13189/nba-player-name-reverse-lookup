@@ -1,6 +1,4 @@
 ## todo
-- (must) JapaniseName の setup のコードからドメインのコードを抜いて分離する
-- (must) Approval の setup のコードからドメインのコードを抜いて分離する
 - (must) any を使っていて、解消するべきところを解消する
 - (must) UT を書く
 - (must) 存在しない選手名を検索したときのエラーを解消する
@@ -12,6 +10,10 @@
 - (should) Meta 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
 - (should) Approval 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
 - (must) 未対応のカタカナ表記に対する対応リクエスト
+- (must) github-flow の整理
+- (must) JapaniseName の setup のコードからドメインのコードを抜いて分離する
+- (must) Approval の setup のコードからドメインのコードを抜いて分離する
+
 
 ## done
 - (must) ut の jest のモック化
