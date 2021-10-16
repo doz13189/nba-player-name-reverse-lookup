@@ -8,7 +8,7 @@
 - (must) axios のエラー時の動作を定義する
 - (must) axios のエラー時のテストを作成する
 - (must) 空白での検索をエラー扱いする
-
+- (must) css のマージン・パディングの簡単な整理
 
 ## done
 - (must) ut の jest のモック化

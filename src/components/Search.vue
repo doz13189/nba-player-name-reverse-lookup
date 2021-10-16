@@ -1,10 +1,12 @@
 <template>
 
-  <p class="is-5 has-text-black">
-    カタカナ表記を知りたい NBA 選手の英語名を入力してください。
-  </p>
+  <div class="has-text-centered m-5">
+    <p class="is-5 has-text-black">
+      カタカナ表記を知りたい NBA 選手の英語名を入力してください。
+    </p>
+  </div>
 
-  <div class="columns is-mobile is-centered m-3">
+  <div class="columns is-mobile is-centered m-5">
     <div class="field has-addons">
       <div class="control">
         <input

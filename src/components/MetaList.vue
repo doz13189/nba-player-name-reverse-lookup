@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="metaButtonDisplay">
 
     <!-- current page & total page の表示は今後実装予定 -->
@@ -18,7 +19,7 @@
     -->
     
     <div v-if="warningDisplay">
-      <div class=" my-5">
+      <div class=" m-5">
         <p class="has-text-danger">検索結果が 100 件を超えています。</p>
         <p class="has-text-danger">もう少し名前を詳しく教えてくれませんか？</p>
       </div>
