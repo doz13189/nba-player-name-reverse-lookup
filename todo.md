@@ -7,12 +7,13 @@
 - (must) axios のエラー時のテストを作成する
 - (must) 空白での検索をエラー扱いする
 - (must) 検索したときに画面に反応を入れる
+- (must) 未対応のカタカナ表記に対する対応リクエスト
+- (must) Katakana.vue に検索結果がない場合のロジックがあるが、これは Search.vue の仕様を変更することで対応したい
 - (should) Meta 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
 - (should) Approval 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
 - (must) 未対応のカタカナ表記に対する対応リクエスト
 - (must) github-flow の整理
-- (must) JapaniseName の setup のコードからドメインのコードを抜いて分離する
-- (must) Approval の setup のコードからドメインのコードを抜いて分離する
+- (must) 合意状況ではなく確定という文言に切り替える
 
 
 ## done
@@ -31,6 +32,8 @@
 - (must) 日本語選手名が登録されていない場合は、未登録と表示する
 - (must) Google Analytics を機能させる
 - (must) css のマージン・パディングの簡単な整理
+- (must) JapaniseName の setup のコードからドメインのコードを抜いて分離する
+- (must) Approval の setup のコードからドメインのコードを抜いて分離する
 
 
 ## memo
