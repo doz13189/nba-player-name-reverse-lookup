@@ -60,7 +60,6 @@ class Search {
   }
 
   isZero(response: SearchResponseOIF): Boolean {
-    console.log('isZero', response.data.length === 0)
     if (response.data.length === 0) { return true }
     return false
   }
