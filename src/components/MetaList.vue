@@ -19,7 +19,7 @@
     -->
     
     <div v-if="warningDisplay">
-      <div class=" m-5">
+      <div class="has-text-centered m-5">
         <p class="has-text-danger">検索結果が 100 件を超えています。</p>
         <p class="has-text-danger">もう少し名前を詳しく教えてくれませんか？</p>
       </div>
