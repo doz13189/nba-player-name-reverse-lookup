@@ -64,7 +64,6 @@ export default defineComponent({
     // 画面のテーブル表示・非表示の分岐用の変数を定義
     const tableDisplay = ref<boolean>(false)
 
-    // 
     watchEffect(() => {
       if (reactivePlayerList) {
         tableDisplay.value = new PlayerList(reactivePlayerList.data).isPlayerList()
