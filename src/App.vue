@@ -9,7 +9,7 @@
     <div id="nav" class="has-text-centered m-3">
 
       <router-link to="/">Search</router-link> |
-      <router-link to="/about">About</router-link> |
+      <router-link to="/about">About</router-link>
 
     </div>
 
