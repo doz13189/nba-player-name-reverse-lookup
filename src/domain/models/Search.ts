@@ -54,6 +54,17 @@ class Search {
     return (checkTarget.data !== undefined) && (checkTarget.meta !== undefined)
   }
 
+  isError(response: SearchResponseOIF | undefined): Boolean {
+    if (response === undefined) { return true }
+    return false
+  }
+
+  isZero(response: SearchResponseOIF): Boolean {
+    console.log('isZero', response.data.length === 0)
+    if (response.data.length === 0) { return true }
+    return false
+  }
+
   get searchString() {
     return this._searchString
   }

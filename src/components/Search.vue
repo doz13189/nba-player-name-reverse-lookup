@@ -32,6 +32,14 @@
     </div>
     
   </div>
+
+
+  <div class="has-text-centered m-5">
+    <p class="is-5 has-text-danger">
+      {{ refResponseMessage }}
+    </p>
+  </div>
+
 </template>
 
 <script lang="ts">
@@ -42,8 +50,12 @@ import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
 export default defineComponent({
   setup() {  
 
+    // 検索ボックスの入力文字用の変数を定義
     const refSearchString = ref<string>('')
     let search: Search
+
+    // 検索実行結果のメッセージ用の変数を定義
+    const refResponseMessage = ref<string>('')
 
     // 検索結果のレスポンスを親コンポーネントに送る用の関数
     type updateSearchResponseType = (value: SearchResponseOIF) => void
@@ -55,12 +67,25 @@ export default defineComponent({
     })
 
     const triggerSearch = async () => {
+      // エラーメッセージの初期化
+      // 以下はドメインロジックとして取り込むべき
+      refResponseMessage.value = ''
 
       // 検索の実行
       const result = await search.getPlayer()
 
-      // 検索結果を確認
+      // 検索実行の結果がエラー
+      if (search.isError(result)) { return }
+
+      // isError で以降の処理には undefined は流れないが、typescript のエラーが取れないため
       if (result === undefined) { return }
+
+      // 検索実行の結果が0件
+      if (search.isZero(result)) {
+        // 以下はドメインロジックとして取り込むべき
+        refResponseMessage.value = '検索結果は 0 件です。'
+        return
+      }
 
       // 検索結果が問題ない場合、レスポンスを親コンポーネントに送る
       const searchResponse: SearchResponseOIF = result
@@ -70,6 +95,7 @@ export default defineComponent({
 
     return {
       refSearchString,
+      refResponseMessage,
       triggerSearch
     }
     
