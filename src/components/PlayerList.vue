@@ -1,7 +1,7 @@
 <template>
 
   <div v-if="tableDisplay">
-    <div class=" my-5">
+    <div class="m-3">
 
       <table class="table is-bordered" align="center">
         <thead>
