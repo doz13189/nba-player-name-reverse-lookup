@@ -1,21 +1,25 @@
 <template>
-  <div v-if="reactiveApproval.data.status">
+
+  <div v-if="reactivePlayer.data.first_name !== '' && reactivePlayer.data.last_name !== ''">
+
     <span>
-      合意済
-    </span>    
+      {{ reactivePlayer.data.first_name }}・{{ reactivePlayer.data.last_name }}
+    </span>
+    
   </div>
   <div v-else>
     <span>
-      未合意
+      未登録
     </span>
   </div>
+
 </template>
 
 <script lang="ts">
 import { defineComponent, reactive } from 'vue'
 import { firestoreProductionConfig } from '@/plugins/firestore'
 import { FirestoreService } from '@/domain/repository/firestore'
-import { ApprovalOIF, Approval } from '@/domain/models/Approval'
+import { KatakanaOIF, Katakana } from '@/domain/models/Katakana'
 
 
 export default defineComponent({
@@ -25,31 +29,30 @@ export default defineComponent({
   setup(props) {
 
     // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
-    interface reactiveApprovalOIF {
-      data: ApprovalOIF
+    interface reactiveKatakanaOIF {
+      data: KatakanaOIF
     }
 
-    // 画面用の合意状況の変数を定義
-    const reactiveApproval = reactive<reactiveApprovalOIF>({ data: { status: false } })
+    // 画面用のカタカナ表記の変数を定義
+    const reactivePlayer = reactive<reactiveKatakanaOIF>({ data: { first_name: '', last_name:'' } })
 
-    // Approval class に渡す firestore class をインスタンス化
+    // Katanaka class に渡す firestore class をインスタンス化
     const firestoreService =  new FirestoreService(firestoreProductionConfig)
 
     if (props.playerId) {
-      const approval = new Approval(props.playerId, firestoreService)
-      const response = approval.getApprovalDocument()
+      const katakana = new Katakana(props.playerId, firestoreService)
+      const response = katakana.getPlayerslDocument()
       
       // setup は async ファンクションにできないため、then で対応
       response.then(value => {
         if (value) {
-          reactiveApproval.data = value
+          reactivePlayer.data = value
         }
       })
-
     }
 
     return {
-      reactiveApproval
+      reactivePlayer
     }
     
   }

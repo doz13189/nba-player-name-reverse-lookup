@@ -22,7 +22,7 @@
               {{ player.first_name }} {{ player.last_name }}
             </td>
             <td>
-              <JapaniseName :playerId="player.id" />
+              <Katakana :playerId="player.id" />
             </td>
             <td>
               <Approval :playerId="player.id" />
@@ -42,13 +42,13 @@ import { defineComponent, inject, watchEffect,ref } from 'vue'
 import { PlayerList } from '@/domain/models/SearchResponse'
 import { PlayerOIF } from '@/domain/models/SearchResponseOIF'
 
-import JapaniseName from '@/components/JapaniseName.vue'
+import Katakana from '@/components/Katakana.vue'
 import Approval from '@/components/Approval.vue'
 
 
 export default defineComponent({
   components: {
-    JapaniseName,
+    Katakana,
     Approval
   },
   setup() {
