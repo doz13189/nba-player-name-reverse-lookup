@@ -8,7 +8,7 @@
 - (must) axios のエラー時の動作を定義する
 - (must) axios のエラー時のテストを作成する
 - (must) 空白での検索をエラー扱いする
-- (must) css のマージン・パディングの簡単な整理
+- (should) 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
 
 ## done
 - (must) ut の jest のモック化
@@ -25,6 +25,7 @@
 - (must) About ページを書く
 - (must) 日本語選手名が登録されていない場合は、未登録と表示する
 - (must) Google Analytics を機能させる
+- (must) css のマージン・パディングの簡単な整理
 
 
 ## memo
@@ -51,4 +52,5 @@ TS2305: Module '"../../node_modules/vue/dist/vue"' has no exported member 'ref'.
 ```sh
 error    Don't use `object` as a type. The `object` type is currently hard to use ([see this issue](https://github.com/microsoft/TypeScript/issues/21732)
 ```
+
 
