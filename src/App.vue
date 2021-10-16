@@ -10,7 +10,6 @@
 
       <router-link to="/">Search</router-link> |
       <router-link to="/about">About</router-link> |
-      <router-link to="/administrator">Administrator</router-link>
 
     </div>
 
