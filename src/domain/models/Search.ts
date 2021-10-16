@@ -54,12 +54,12 @@ class Search {
     return (checkTarget.data !== undefined) && (checkTarget.meta !== undefined)
   }
 
-  isError(response: SearchResponseOIF | undefined): Boolean {
+  isError(response: SearchResponseOIF | undefined): boolean {
     if (response === undefined) { return true }
     return false
   }
 
-  isZero(response: SearchResponseOIF): Boolean {
+  isZero(response: SearchResponseOIF): boolean {
     if (response.data.length === 0) { return true }
     return false
   }
