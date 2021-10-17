@@ -1,8 +1,7 @@
 ## todo
 - (must) any を使っていて、解消するべきところを解消する
-- (must) UT を書く
-- (must) axios のエラー時の動作を定義する
-- (must) axios のエラー時のテストを作成する
+- (must) componets の UT を書く
+- (must) domain/* の UT を書く
 - (must) 未対応のカタカナ表記に対する対応リクエスト
 - (must) Katakana.vue に検索結果がない場合のロジックがあるが、これは Search.vue の仕様を変更することで対応したい
 - (must) 未対応のカタカナ表記に対する対応リクエスト
@@ -35,6 +34,9 @@
 - (must) 検索したときに画面に反応を入れる
 - (must) 存在しない選手名を検索したときのエラーを解消する
 - (must) 存在しない選手名を検索したときの「存在しない」ことを表示する
+- (must) domain/Search.ts の UT を書く
+- (must) axios のエラー時の動作を定義する
+- (must) axios のエラー時のテストを作成する
 
 ## memo
 

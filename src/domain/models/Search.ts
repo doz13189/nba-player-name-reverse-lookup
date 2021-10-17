@@ -19,7 +19,7 @@ class Search {
         },
       })
 
-      if (!response) {
+      if (!Object.prototype.hasOwnProperty.call(response, 'data')) {
         throw new Error('Error Response')
       }
 
@@ -28,7 +28,7 @@ class Search {
     }
     catch(error) {
       if (axios.isAxiosError(error)) {
-        console.error(error)
+        throw new Error('Error Response')
       }
     }
   }
@@ -36,17 +36,11 @@ class Search {
   // https://stackoverflow.com/questions/54812453/function-lacks-ending-return-statement-and-return-type-does-not-include-undefin?rq=1
   async getPlayer(): Promise<SearchResponseOIF | undefined> {
 
-    try {
+    const response = await this.fetch(`players?search=${this._searchString}&per_page=100`)
+    if (response === undefined) { return }
+    if (this.isGetPlayerResponse(response)) { return response }
+    return
 
-      const response = await this.fetch(`players?search=${this._searchString}&per_page=100`)
-
-      if (this.isGetPlayerResponse(response)) {
-        return response
-      }
-
-    } catch (error) {
-      console.error(error)
-    }
   }
 
   // https://typescript-jp.gitbook.io/deep-dive/type-system/typeguard#yznotype-guard

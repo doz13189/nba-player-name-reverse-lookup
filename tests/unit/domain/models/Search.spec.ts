@@ -5,7 +5,7 @@ import axios from 'axios'
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-const dummyResponse1: SearchResponseOIF = { data : [{
+const dummyCorrectResponse: SearchResponseOIF = { data : [{
     id : 666577,
     first_name : 'Daniel',
     height_feet : null,
@@ -26,79 +26,97 @@ const dummyResponse1: SearchResponseOIF = { data : [{
   meta : { 'total_pages' : 1, 'current_page' : 1, 'next_page' : null, 'per_page' : 25, 'total_count' : 1 }
 }
 
-const dummyResponse2: SearchResponseOIF =  { data:
-  [{
-      id: 386,
-      first_name: "Chasson",
-      height_feet: 6,
-      height_inches: 2,
-      last_name: "Randle",
-      position: "G",
-      team: {
-        id: 22,
-        abbreviation: "ORL",
-        city: "Orlando",
-        conference: "East",
-        division: "Southeast",
-        full_name: "Orlando Magic",
-        name: "Magic"
-      },
-      weight_pounds: 185
-    },
-    {
-      id: 387,
-    first_name: "Julius",
-    height_feet: 6,
-    height_inches: 9,
-    last_name: "Randle",
-    position: "F",
-    team: {
-      id: 20,
-      abbreviation: "NYK",
-      city: "New York",
-      conference: "East",
-      division: "Atlantic",
-      full_name: "New York Knicks",
-      name: "Knicks"
-    },
-    weight_pounds: 250
-  }],
-  meta: {
-    total_pages: 1,
-    current_page: 1,
-    next_page: null,
-    per_page: 25,
-    total_count: 2
-  }
+const dummyCorrectZeroResponse: SearchResponseOIF = { data : [],
+  meta : { 'total_pages' : 1, 'current_page' : 1, 'next_page' : null, 'per_page' : 25, 'total_count' : 1 }
 }
+
+
+const dummyWrangtResponse: SearchResponseOIF | any = { data : [{
+    id : 666577,
+    first_name : 'Daniel',
+    height_feet : null,
+    height_inches : null,
+    last_name : 'Gafford',
+    position : 'F',
+    team : {
+      id: 30,
+      abbreviation : 'WAS',
+      city : 'Washington',
+      conference : 'East',
+      division : 'Southeast',
+      full_name : 'Washington Wizards',
+      name : 'Wizards'
+    },
+    weight_pounds : null
+  }]
+}
+
 
 describe('Search.ts', () => {
   
-  it('検索結果が1件の検索テスト', async () => {
+  it('検索結果が1件の場合の検索テスト', async () => {
 
-    mockedAxios.get.mockResolvedValue({ data: dummyResponse1 })
+    mockedAxios.get.mockResolvedValue({ data: dummyCorrectResponse })
 
     const playerName: string = 'gafford'
     const search = new Search(playerName)
     const searchResponse = await search.getPlayer()
 
     if (searchResponse) {
-      expect(searchResponse).toEqual(dummyResponse1)
+      expect(searchResponse).toEqual(dummyCorrectResponse)
     }
 
   })
 
-  it('検索結果が複数の検索テスト', async () => {
+  it('検索結果が0件の場合の検索テスト', async () => {
 
-    mockedAxios.get.mockResolvedValue({ data: dummyResponse2 })
+    mockedAxios.get.mockResolvedValue({ data: dummyCorrectZeroResponse })
 
-    const playerName: string = 'randle'
+    const playerName: string = 'gafford'
+    const search = new Search(playerName)
+    const searchResponse = await search.getPlayer()
+
+    if (searchResponse) {
+      expect(searchResponse).toEqual(dummyCorrectZeroResponse)
+      expect(search.isZero(searchResponse)).toBe(true)
+    }
+
+  })
+
+  it('不正な型のレスポンスが返ってくる場合の検索テスト', async () => {
+
+    mockedAxios.get.mockResolvedValue({ data: dummyWrangtResponse })
+
+    const playerName: string = 'gafford'
     const search = new Search(playerName)
 
     const searchResponse = await search.getPlayer()
-    if (searchResponse) {
-      expect(searchResponse.meta).toEqual(dummyResponse2)
-    }
+    expect(searchResponse).toBe(undefined)
+    expect(search.isError(searchResponse)).toBe(true)
+
+  })
+
+  it('空のレスポンスが返ってくる場合の検索テスト', async () => {
+
+    mockedAxios.get.mockResolvedValue({})
+
+    const playerName: string = 'gafford'
+    const search = new Search(playerName)
+
+    const searchResponse = await search.getPlayer()
+    expect(searchResponse).toBe(undefined)
+
+  })
+
+  it('エラーレスポンスが返ってくる場合の検索テスト', async () => {
+
+    mockedAxios.get.mockRejectedValue({})
+
+    const playerName: string = 'gafford'
+    const search = new Search(playerName)
+
+    const searchResponse = await search.getPlayer()
+    expect(searchResponse).toBe(undefined)
 
   })
 
