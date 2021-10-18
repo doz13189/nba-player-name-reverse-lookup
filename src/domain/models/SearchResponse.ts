@@ -4,26 +4,6 @@ import {
 } from '@/domain/models/SearchResponseOIF'
 
 
-// class SearchResponse {
-
-//   private _meta: Meta
-//   private _playerList: PlayerList
-
-//   constructor(response: SearchResponseIF) {
-//     this._meta = new Meta(response.meta)
-//     this._playerList = new PlayerList(response.data)
-//   }
-
-//   get meta(): Meta {
-//     return this._meta
-//   }
-
-//   get playerList(): PlayerList {
-//     return this._playerList
-//   }
-
-// }
-
 class Meta {
 
   private _meta: MetaOIF
