@@ -10,7 +10,11 @@ import {
 } from "firebase/firestore";
 
 
-class FirestoreService {
+interface FirestoreServiceIF {
+  getDocument(document: string, key: string): Promise<any>
+}
+
+class FirestoreService implements FirestoreServiceIF {
 
   private _firestore: firestoreType
 
@@ -58,5 +62,6 @@ class FirestoreService {
 
 
 export {
+  FirestoreServiceIF,
   FirestoreService
 }

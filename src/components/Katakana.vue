@@ -1,6 +1,7 @@
 <template>
 
-  <div v-if="reactivePlayer.data.first_name !== '' && reactivePlayer.data.last_name !== ''">
+  <!-- ドメインロジック -->
+  <div v-if="reactiveIsDisplayed">
 
     <span>
       {{ reactivePlayer.data.first_name }}・{{ reactivePlayer.data.last_name }}
@@ -16,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
+import { defineComponent, reactive, ref } from 'vue'
 import { firestoreProductionConfig } from '@/plugins/firestore'
 import { FirestoreService } from '@/domain/repository/firestore'
 import { KatakanaOIF, Katakana } from '@/domain/models/Katakana'
@@ -36,15 +37,20 @@ export default defineComponent({
     // 画面用のカタカナ表記の変数を定義
     const reactivePlayer = reactive<reactiveKatakanaOIF>({ data: { first_name: '', last_name:'' } })
 
+    // カタカナ表記を表示するかどうかの変数を定義
+    const reactiveIsDisplayed = ref<boolean>(false)
+
     // Katanaka class に渡す firestore class をインスタンス化
     const firestoreService =  new FirestoreService(firestoreProductionConfig)
 
     if (props.playerId) {
       const katakana = new Katakana(props.playerId, firestoreService)
-      const response = katakana.getPlayerslDocument()
-      
+
       // setup は async ファンクションにできないため、then で対応
-      response.then(value => {
+      katakana.getPlayerslDocument().then(value => {
+
+        reactiveIsDisplayed.value = katakana.isDisplayed
+
         if (value) {
           reactivePlayer.data = value
         }
@@ -52,6 +58,7 @@ export default defineComponent({
     }
 
     return {
+      reactiveIsDisplayed,
       reactivePlayer
     }
     
