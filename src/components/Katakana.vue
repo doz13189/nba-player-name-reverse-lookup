@@ -1,6 +1,5 @@
 <template>
 
-  <!-- ドメインロジック -->
   <div v-if="reactiveIsDisplayed">
 
     <span>

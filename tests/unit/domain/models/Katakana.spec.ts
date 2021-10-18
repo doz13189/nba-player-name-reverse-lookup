@@ -1,22 +1,6 @@
 import { Katakana } from '@/domain/models/Katakana'
-import { FirestoreServiceIF } from '@/domain/repository/firestore'
+import { TruthyMockedFirestoreService, FalsyMockedFirestoreService } from '../mocks/MockedFirestore'
 
-
-class TruthyMockedFirestoreService implements FirestoreServiceIF {
-
-  async getDocument(document: string, key: string): Promise<any> {
-    return Promise.resolve('dummy')
-  }
-
-}
-
-class FalsyMockedFirestoreService implements FirestoreServiceIF {
-
-  async getDocument(document: string, key: string): Promise<any> {
-    return Promise.resolve(undefined)
-  }
-
-}
 
 describe('Katakana.ts', () => {
 
