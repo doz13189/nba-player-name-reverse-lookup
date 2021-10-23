@@ -1,4 +1,13 @@
-interface PlayerOIF {
+export interface ApprovalOIF {
+  status: boolean
+}
+
+export interface KatakanaOIF {
+  first_name: string
+  last_name:string
+}
+
+export interface PlayerOIF {
   id: number
   first_name: string
   height_feet: number | null
@@ -9,7 +18,7 @@ interface PlayerOIF {
   weight_pounds: number | null
 }
 
-interface TeamOIF {
+export interface TeamOIF {
   id : number
   abbreviation : string
   city : string
@@ -19,7 +28,7 @@ interface TeamOIF {
   name : string
 }
 
-interface MetaOIF {
+export interface MetaOIF {
   total_pages : number
   current_page : number
   next_page : number | null
@@ -27,15 +36,7 @@ interface MetaOIF {
   total_count : number
 }
 
-interface SearchResponseOIF {
+export interface SearchResponseOIF {
   data: PlayerOIF[]
   meta: MetaOIF
-}
-
-
-export {
-  PlayerOIF,
-  TeamOIF,
-  MetaOIF,
-  SearchResponseOIF
 }

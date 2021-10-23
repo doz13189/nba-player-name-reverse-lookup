@@ -40,7 +40,7 @@
 <script lang="ts">
 import { defineComponent, inject, watchEffect,ref } from 'vue'
 import { PlayerList } from '@/domain/models/SearchResponse'
-import { PlayerOIF } from '@/domain/models/SearchResponseOIF'
+import { PlayerOIF } from '@/interfaces/ObjectInterfaces'
 
 import Katakana from '@/components/Katakana.vue'
 import Approval from '@/components/Approval.vue'

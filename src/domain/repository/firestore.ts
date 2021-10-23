@@ -8,13 +8,10 @@ import {
   // QueryDocumentSnapshot,
   // DocumentData
 } from "firebase/firestore";
+import { FirestoreServiceIF } from '@/interfaces/ClassInterfaces'
 
 
-interface FirestoreServiceIF {
-  getDocument(document: string, key: string): Promise<any>
-}
-
-class FirestoreService implements FirestoreServiceIF {
+export class FirestoreService implements FirestoreServiceIF {
 
   private _firestore: firestoreType
 
@@ -61,7 +58,4 @@ class FirestoreService implements FirestoreServiceIF {
 }
 
 
-export {
-  FirestoreServiceIF,
-  FirestoreService
-}
+
