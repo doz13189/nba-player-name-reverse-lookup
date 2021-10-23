@@ -2,11 +2,7 @@ import {
   Meta,
   PlayerList
 } from '@/domain/models/SearchResponse'
-
-import {
-  MetaOIF,
-  PlayerOIF
-} from '@/domain/models/SearchResponseOIF'
+import { MetaOIF, PlayerOIF } from '@/interfaces/ObjectInterfaces'
 
 
 const dummyMetaUnder100: MetaOIF = { 

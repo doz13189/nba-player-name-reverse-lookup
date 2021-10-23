@@ -1,5 +1,5 @@
 import { Search } from '@/domain/models/Search'
-import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
+import { SearchResponseOIF } from '@/interfaces/ObjectInterfaces'
 
 import axios from 'axios'
 jest.mock('axios')
