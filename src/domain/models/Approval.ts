@@ -1,11 +1,10 @@
-import { FirestoreServiceIF } from '@/domain/repository/firestore'
+import { ApprovalOIF } from '@/interfaces/ObjectInterfaces'
+import {
+  ApprovalIF,
+  FirestoreServiceIF
+} from '@/interfaces/ClassInterfaces'
 
-
-interface ApprovalOIF {
-  status: boolean
-}
-
-class Approval {
+export class Approval implements ApprovalIF {
 
   private _playerId: string
   private _isDisplayed = false
@@ -30,7 +29,3 @@ class Approval {
 
 }
 
-export {
-  ApprovalOIF,
-  Approval
-}

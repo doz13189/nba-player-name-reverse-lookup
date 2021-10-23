@@ -15,8 +15,8 @@ import { defineComponent, reactive, readonly, provide, watchEffect } from 'vue'
 import Search from '@/components/Search.vue'
 import PlayerList from '@/components/PlayerList.vue'
 import MetaList from '@/components/MetaList.vue'
-import { SearchResponseOIF, MetaOIF, PlayerOIF } from '@/domain/models/SearchResponseOIF'
-import { SearchResponseFactory } from '@/domain/models/SearchResponseFactory'
+import { SearchResponseOIF, MetaOIF, PlayerOIF } from '@/interfaces/ObjectInterfaces'
+import { SearchResponseFactory } from '@/domain/factory/SearchResponseFactory'
 
 
 export default defineComponent({

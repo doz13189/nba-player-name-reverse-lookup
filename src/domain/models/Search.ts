@@ -1,8 +1,9 @@
 import axios from 'axios'
-import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
+import { SearchResponseOIF } from '@/interfaces/ObjectInterfaces'
+import { SearchIF } from '@/interfaces/ClassInterfaces'
 
 
-class Search {
+export class Search implements SearchIF {
 
   private _searchString: string
   private _baseURL = 'https://www.balldontlie.io/api/v1/'
@@ -64,6 +65,3 @@ class Search {
 
 }
 
-export {
-  Search
-}

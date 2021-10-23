@@ -1,12 +1,11 @@
-import { FirestoreServiceIF } from '@/domain/repository/firestore'
+import { KatakanaOIF } from '@/interfaces/ObjectInterfaces'
+import {
+  KatakanaIF,
+  FirestoreServiceIF
+} from '@/interfaces/ClassInterfaces'
 
 
-interface KatakanaOIF {
-  first_name: string
-  last_name:string
-}
-
-class Katakana {
+export class Katakana implements KatakanaIF {
 
   private _playerId: string
   private _isDisplayed = false
@@ -31,7 +30,4 @@ class Katakana {
 
 }
 
-export {
-  KatakanaOIF,
-  Katakana
-}
+

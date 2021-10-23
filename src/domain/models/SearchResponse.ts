@@ -1,10 +1,8 @@
-import {
-  MetaOIF,
-  PlayerOIF
-} from '@/domain/models/SearchResponseOIF'
+import { MetaOIF, PlayerOIF} from '@/interfaces/ObjectInterfaces'
+import { MetaIF, PlayerListIF } from '@/interfaces/ClassInterfaces'
 
 
-class Meta {
+export class Meta implements MetaIF {
 
   private _meta: MetaOIF
 
@@ -26,7 +24,7 @@ class Meta {
 
 }
 
-class PlayerList {
+export class PlayerList implements PlayerListIF {
 
   private _playerList: PlayerOIF[]
 
@@ -44,9 +42,3 @@ class PlayerList {
 
 }
 
-
-
-export {
-  Meta,
-  PlayerList
-}

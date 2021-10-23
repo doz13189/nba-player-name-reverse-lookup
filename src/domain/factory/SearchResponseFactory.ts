@@ -1,7 +1,7 @@
-import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
+import { SearchResponseOIF } from '@/interfaces/ObjectInterfaces'
 
 
-class SearchResponseFactory {
+export class SearchResponseFactory {
 
   static createSearchResponse(): SearchResponseOIF {
 
@@ -37,6 +37,3 @@ class SearchResponseFactory {
 
 }
 
-export {
-  SearchResponseFactory
-}

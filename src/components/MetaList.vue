@@ -42,7 +42,7 @@
 <script lang="ts">
 import { defineComponent, ref, watchEffect, inject } from 'vue'
 import { Meta } from '@/domain/models/SearchResponse'
-import { MetaOIF } from '@/domain/models/SearchResponseOIF'
+import { MetaOIF } from '@/interfaces/ObjectInterfaces'
 
 
 export default defineComponent({

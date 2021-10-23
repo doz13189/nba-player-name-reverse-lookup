@@ -17,7 +17,8 @@
 import { defineComponent, reactive, ref } from 'vue'
 import { firestoreProductionConfig } from '@/plugins/firestore'
 import { FirestoreService } from '@/domain/repository/firestore'
-import { ApprovalOIF, Approval } from '@/domain/models/Approval'
+import { Approval } from '@/domain/models/Approval'
+import { ApprovalOIF } from '@/interfaces/ObjectInterfaces'
 
 
 export default defineComponent({

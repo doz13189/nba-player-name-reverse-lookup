@@ -45,7 +45,8 @@
 <script lang="ts">
 import { defineComponent, ref, watchEffect, inject } from 'vue';
 import { Search } from '@/domain/models/Search'
-import { SearchResponseOIF } from '@/domain/models/SearchResponseOIF'
+import { SearchResponseOIF } from '@/interfaces/ObjectInterfaces'
+
 
 export default defineComponent({
   setup() {  

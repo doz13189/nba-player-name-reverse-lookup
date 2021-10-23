@@ -1,4 +1,5 @@
-import { FirestoreServiceIF } from '@/domain/repository/firestore'
+import { FirestoreServiceIF } from '@/interfaces/ClassInterfaces'
+
 
 class TruthyMockedFirestoreService implements FirestoreServiceIF {
 

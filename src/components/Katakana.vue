@@ -19,7 +19,8 @@
 import { defineComponent, reactive, ref } from 'vue'
 import { firestoreProductionConfig } from '@/plugins/firestore'
 import { FirestoreService } from '@/domain/repository/firestore'
-import { KatakanaOIF, Katakana } from '@/domain/models/Katakana'
+import { Katakana } from '@/domain/models/Katakana'
+import { KatakanaOIF } from '@/interfaces/ObjectInterfaces'
 
 
 export default defineComponent({
