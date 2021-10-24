@@ -16,7 +16,6 @@ import Search from '@/components/Search.vue'
 import PlayerList from '@/components/PlayerList.vue'
 import MetaList from '@/components/MetaList.vue'
 import { SearchResponseOIF, MetaOIF, PlayerOIF } from '@/interfaces/ObjectInterfaces'
-import { SearchResponseFactory } from '@/domain/factory/SearchResponseFactory'
 
 
 export default defineComponent({
@@ -29,11 +28,11 @@ export default defineComponent({
 
     // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
     interface reactiveSearchResponseOIF {
-      data : SearchResponseOIF
+      data : SearchResponseOIF | undefined
     }
 
     // 空のオブジェクトを定義
-    const searchResponse = reactive<reactiveSearchResponseOIF>({ data: SearchResponseFactory.createSearchResponse() })
+    const searchResponse = reactive<reactiveSearchResponseOIF>({ data: undefined })
 
     // 子コンポーネントに渡す用の関数
     const updateSearchResponse = (searchResponseValue: SearchResponseOIF): void => {
@@ -44,26 +43,25 @@ export default defineComponent({
 
     // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
     interface reactiveMetaOIF {
-      data : MetaOIF
+      data : MetaOIF | undefined
     }
 
     // 空のオブジェクトを定義
-    const meta = reactive<reactiveMetaOIF>({ data: SearchResponseFactory.createSearchResponse().meta })
+    const meta = reactive<reactiveMetaOIF>({ data: undefined })
 
     // リアクティブオブジェクトとして扱えるように data プロパティを持つインターフェースに変更
     interface reactivePlayerOIF {
-      data : PlayerOIF[]
+      data : PlayerOIF[] | undefined
     }
 
     // 空のオブジェクトを定義
-    const playerList = reactive<reactivePlayerOIF>({ data: SearchResponseFactory.createSearchResponse().data })
+    const playerList = reactive<reactivePlayerOIF>({ data: undefined })
 
+    // 子コンポーネントに渡す引数単位に分割
     watchEffect(() => {
-      // 以下の分岐はドメインロジックとして取り込むべき
-      if (searchResponse.data.data.length) {
-        meta.data = searchResponse.data.meta
-        playerList.data = searchResponse.data.data
-      }
+      if (searchResponse.data === undefined) { return }
+      meta.data = searchResponse.data.meta
+      playerList.data = searchResponse.data.data
     })
 
     provide('meta', readonly(meta))

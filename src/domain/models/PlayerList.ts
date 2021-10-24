@@ -11,7 +11,7 @@ export class PlayerList implements PlayerListIF {
   }
 
   isPlayerList(): boolean {
-    return this._playerList[0].id !== 0
+    return this._playerList !== undefined
   }
 
   get playerList(): PlayerOIF[] {

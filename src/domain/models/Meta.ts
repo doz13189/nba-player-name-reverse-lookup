@@ -11,7 +11,7 @@ export class Meta implements MetaIF {
   }
 
   isMeta(): boolean {
-    return this._meta.current_page !== 0
+    return this._meta !==  undefined
   }
 
   isOver100(): boolean {

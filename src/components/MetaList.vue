@@ -63,11 +63,16 @@ export default defineComponent({
     const warningDisplay = ref<boolean>(false)
 
     watchEffect(() => {
-      if (reactiveMeta) {
-        const meta =  new Meta(reactiveMeta.data)
-        metaButtonDisplay.value = meta.isMeta()
+      if (reactiveMeta === undefined) { return }
+
+      const meta =  new Meta(reactiveMeta.data)
+
+      metaButtonDisplay.value = meta.isMeta()
+
+      if (meta.isMeta()) { 
         warningDisplay.value =  meta.isOver100()
-      }
+       }
+
     })
 
     return {

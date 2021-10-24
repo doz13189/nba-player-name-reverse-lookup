@@ -65,9 +65,8 @@ export default defineComponent({
     const tableDisplay = ref<boolean>(false)
 
     watchEffect(() => {
-      if (reactivePlayerList) {
-        tableDisplay.value = new PlayerList(reactivePlayerList.data).isPlayerList()
-      }
+      if (reactivePlayerList === undefined) { return }
+      tableDisplay.value = new PlayerList(reactivePlayerList.data).isPlayerList()
     })
     
     return {
