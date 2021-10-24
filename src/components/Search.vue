@@ -33,9 +33,9 @@
     
   </div>
 
-
+  <!-- コンポーネントとして分割するべき -->
   <div class="has-text-centered m-5">
-    <p class="is-5 has-text-danger">
+    <p class="is-5 has-text-danger" data-testid="search-result-message">
       {{ refResponseMessage }}
     </p>
   </div>

@@ -12,21 +12,31 @@ describe('Search.vue', () => {
   })
 
   it('画面から検索実行するテスト', async () => {
+    
     // new Search() は、初期ロードと以下の setValue により2回インスタンス化される
     
-    const wrapper = shallowMount(SearchView)
+    // https://github.com/vuejs/vue-test-utils/issues/1698
+    const wrapper = shallowMount(SearchView, {
+      global: {
+        provide: {
+          updateSearchResponse: jest.fn()
+        }
+      }
+    })
+
     const searchString = wrapper.find('[data-testid="search-string"]')
     searchString.setValue('test')
     await flushPromises()
 
     const searchButton = wrapper.find('[data-testid="search-button"]')
-    wrapper.find('[data-testid="search-button"]').trigger('click')
+    wrapper.find('[data-testid="search-button"]')
+    searchButton.trigger('click')
     await flushPromises()
 
     expect(SearchMock.mock.instances.length).toEqual(2)
     expect(SearchMock.mock.calls[0][0]).toBe('')
     expect(SearchMock.mock.calls[1][0]).toBe('test')
     expect(SearchMock.prototype.getPlayer).toHaveBeenCalledTimes(1)
-    
+
   })
 })

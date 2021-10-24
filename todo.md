@@ -5,6 +5,7 @@
 - (must) github-flow の整理
 - (must) 合意状況ではなく確定という文言に切り替える
 - (must) about ページで更新すると 404
+- (must) provide / inject の UT を書く
 - (should) 空白での検索をエラー扱いする
 - (should) Meta 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
 - (should) Approval 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
