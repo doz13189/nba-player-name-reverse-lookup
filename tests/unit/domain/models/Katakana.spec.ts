@@ -2,6 +2,7 @@ import { Katakana } from '@/domain/models/Katakana'
 import { TruthyMockedFirestoreService, FalsyMockedFirestoreService } from '../mocks/MockedFirestore'
 
 
+
 describe('Katakana.ts', () => {
 
   it('カタカナ表記のデータが取得できる場合', async () => {
