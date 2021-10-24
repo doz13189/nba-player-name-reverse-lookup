@@ -11,6 +11,8 @@ export class PlayerList implements PlayerListIF {
   }
 
   isPlayerList(): boolean {
+    // PlayerList Class の _playerList に undefined が渡されることはロジック上ないため、この関数は常に true を返す
+    // return this._playerList !==  undefined
     return this._playerList !== undefined
   }
 

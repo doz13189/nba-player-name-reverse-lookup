@@ -11,11 +11,14 @@ export class Meta implements MetaIF {
   }
 
   isMeta(): boolean {
-    return this._meta !==  undefined
+    // Meta Class の _meta に undefined が渡されることはロジック上ないため、この関数は常に true を返す
+    // return this._meta !==  undefined
+    return true
   }
 
   isOver100(): boolean {
-    return this._meta.total_pages > 1
+    if (this._meta.total_pages > 1) { return true }
+    return false
   }
 
   get meta(): MetaOIF {

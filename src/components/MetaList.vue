@@ -2,22 +2,6 @@
 
   <div v-if="metaButtonDisplay">
 
-    <!-- current page & total page の表示は今後実装予定 -->
-    <!-- 
-    <div class="columns is-gapless my-5">
-      <div class="column"></div>
-      <div class="column">
-        <p class="heading">Current Page</p>
-        <p class="title" data-testid="current-page-paragraph">{{ reactiveMeta.data.current_page }}</p>
-      </div>
-      <div class="column">
-        <p class="heading">Total Page</p>
-        <p class="title" data-testid="total-page-paragraph">{{ reactiveMeta.data.total_pages }}</p>
-      </div>
-      <div class="column"></div>
-    </div>
-    -->
-    
     <div v-if="warningDisplay">
       <div class="has-text-centered m-5">
         <p class="has-text-danger">検索結果が 100 件を超えています。</p>
@@ -26,16 +10,6 @@
     </div>
 
   </div>
-
-  <!-- next button と previous button は今後実装予定 -->
-  <!-- 
-  <div>
-    <p>
-      {{ reactiveMeta.data.next_page }}
-      {{ reactiveMeta.data.total_count }}
-    </p>
-  </div>
-  -->
 
 </template>
 
@@ -64,14 +38,11 @@ export default defineComponent({
 
     watchEffect(() => {
       if (reactiveMeta === undefined) { return }
+      if (reactiveMeta.data === undefined) { return }
 
       const meta =  new Meta(reactiveMeta.data)
-
       metaButtonDisplay.value = meta.isMeta()
-
-      if (meta.isMeta()) { 
-        warningDisplay.value =  meta.isOver100()
-       }
+      warningDisplay.value =  meta.isOver100()
 
     })
 

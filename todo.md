@@ -2,12 +2,9 @@
 - (must) any を使っていて、解消するべきところを解消する
 - (must) componets の UT を書く
 - (must) 未対応のカタカナ表記に対する対応リクエスト
-- (must) Katakana.vue に検索結果がない場合のロジックがあるが、これは Search.vue の仕様を変更することで対応したい
-- (must) 未対応のカタカナ表記に対する対応リクエスト
 - (must) github-flow の整理
 - (must) 合意状況ではなく確定という文言に切り替える
 - (must) about ページで更新すると 404
-- (must) レスポンスの方に undefined を追加し、初期データを持つのをやめる
 - (should) 空白での検索をエラー扱いする
 - (should) Meta 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
 - (should) Approval 画面でのメッセージ表示文言は、ドメインなので、クラスにするべきか
@@ -39,6 +36,8 @@
 - (must) axios のエラー時のテストを作成する
 - (must) implement に依存するようにクラス設計を変更する
 - (must) domain/* の UT を書く
+- (must) レスポンスの方に undefined を追加し、初期データを持つのをやめる
+- (must) Katakana.vue に検索結果がない場合のロジックがあるが、これは Search.vue の仕様を変更することで対応したい
 
 
 ## memo
