@@ -1,7 +1,7 @@
 import { FirestoreServiceIF } from '@/interfaces/ClassInterfaces'
 
 
-class TruthyMockedFirestoreService implements FirestoreServiceIF {
+export class TruthyMockedFirestoreService implements FirestoreServiceIF {
 
   async getDocument(document: string, key: string): Promise<any> {
     return Promise.resolve('dummy')
@@ -9,7 +9,7 @@ class TruthyMockedFirestoreService implements FirestoreServiceIF {
 
 }
 
-class FalsyMockedFirestoreService implements FirestoreServiceIF {
+export class FalsyMockedFirestoreService implements FirestoreServiceIF {
 
   async getDocument(document: string, key: string): Promise<any> {
     return Promise.resolve(undefined)
@@ -17,7 +17,3 @@ class FalsyMockedFirestoreService implements FirestoreServiceIF {
 
 }
 
-export {
-  TruthyMockedFirestoreService,
-  FalsyMockedFirestoreService
-}

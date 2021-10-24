@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { defineComponent, inject, watchEffect,ref } from 'vue'
-import { PlayerList } from '@/domain/models/SearchResponse'
+import { PlayerList } from '@/domain/models/PlayerList'
 import { PlayerOIF } from '@/interfaces/ObjectInterfaces'
 
 import Katakana from '@/components/Katakana.vue'
